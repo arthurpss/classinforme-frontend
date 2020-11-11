@@ -3,14 +3,26 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ProdutosComponent } from './produtos/produtos.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { CadastroEmpresaComponent } from './cadastro-empresa/cadastro-empresa.component';
+import { CadastroProdutoComponent } from './cadastro-produto/cadastro-produto.component';
+import { CarouselProdutosComponent } from './carousel-produtos/carousel-produtos.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ProdutosComponent,
+    NavbarComponent,
+    CadastroEmpresaComponent,
+    CadastroProdutoComponent,
+    CarouselProdutosComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,11 @@
+a {
+    color: black !important;
+}
+
+a:hover {
+    color: rgb(49, 208, 147) !important;
+}
+
+.logo {
+    background-color: green;
+}
