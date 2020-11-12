@@ -9,6 +9,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CadastroEmpresaComponent } from './cadastro-empresa/cadastro-empresa.component';
 import { CadastroProdutoComponent } from './cadastro-produto/cadastro-produto.component';
 import { CarouselProdutosComponent } from './carousel-produtos/carousel-produtos.component';
+import { RodapeComponent } from './rodape/rodape.component';
+import { PrimeiroContatoComponent } from './primeiro-contato/primeiro-contato.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +20,10 @@ import { CarouselProdutosComponent } from './carousel-produtos/carousel-produtos
     NavbarComponent,
     CadastroEmpresaComponent,
     CadastroProdutoComponent,
-    CarouselProdutosComponent
+    CarouselProdutosComponent,
+    RodapeComponent,
+    PrimeiroContatoComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

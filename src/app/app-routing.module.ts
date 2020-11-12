@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AppComponent } from './app.component';
+import { HomeComponent } from './home/home.component';
+import { PrimeiroContatoComponent } from './primeiro-contato/primeiro-contato.component';
 
 const routes: Routes = [
-  { path: 'home', component: AppComponent },
-  { path: '**', redirectTo: '/home' }
+  { path: 'home', component: HomeComponent },
+  { path: '', component: HomeComponent },
+  { path: 'primeiro-contato', component: PrimeiroContatoComponent }
 ];
 
 @NgModule({

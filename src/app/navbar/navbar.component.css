@@ -1,11 +1,19 @@
 a {
-    color: black !important;
+    color: black;
 }
 
-a:hover {
-    color: rgb(49, 208, 147) !important;
+#navbar-sinfor {
+    background-color: #31d093;
 }
 
-.logo {
-    background-color: green;
+.nav-item a.nav-link {
+    color: #fff;
+}
+
+.nav-item a.dropdown-item:hover {
+    color: #31d093;
+}
+
+.anuncie {
+    color: #fff;
 }
