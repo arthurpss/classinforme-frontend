@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,6 +13,7 @@ import { CarouselProdutosComponent } from './carousel-produtos/carousel-produtos
 import { RodapeComponent } from './rodape/rodape.component';
 import { PrimeiroContatoComponent } from './primeiro-contato/primeiro-contato.component';
 import { HomeComponent } from './home/home.component';
+import { CatalogoService } from './shared/catalogo.service';
 
 @NgModule({
   declarations: [
@@ -28,9 +30,12 @@ import { HomeComponent } from './home/home.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    CatalogoService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

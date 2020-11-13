@@ -1,5 +1,5 @@
-<div class="container" style="padding-top: 90px;">
-    <div class="py-5 text-center">
+<!-- <div class="container" style="padding-top: 90px;"> -->
+    <div class="py-5 text-center" style="padding-top: 90px;">
         <!-- <img class="d-block mx-auto mb-4" src="../assets/brand/bootstrap-solid.svg" alt="" width="72" height="72"> -->
         <h2>Primeiro contato</h2>
         <p class="lead">Nos envie informações primárias para que possamos analisar se sua empresa se encaixa no nosso
@@ -15,11 +15,7 @@
         <div class="form-group">
             <label for="tipo-produto">Tipo de produto</label>
             <select class="form-control" id="tipo-produto-select">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
+                <option *ngFor="let categoria of catalogo">{{categoria}}</option>
             </select>
         </div>
         <div class="py-5 text-center">
@@ -29,4 +25,4 @@
             <input class="btn-lg btn-success" type="submit" value="Enviar">
         </div>
     </form>
-</div>
+<!-- </div> -->
