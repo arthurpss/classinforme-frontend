@@ -13,7 +13,9 @@ import { CarouselProdutosComponent } from './carousel-produtos/carousel-produtos
 import { RodapeComponent } from './rodape/rodape.component';
 import { PrimeiroContatoComponent } from './primeiro-contato/primeiro-contato.component';
 import { HomeComponent } from './home/home.component';
-import { CatalogoService } from './shared/catalogo.service';
+import { CatalogoService } from './shared/services/catalogo.service';
+import { FormsModule } from '@angular/forms';
+import { EmailService } from './shared/services/email.service';
 
 @NgModule({
   declarations: [
@@ -31,10 +33,12 @@ import { CatalogoService } from './shared/catalogo.service';
     BrowserModule,
     AppRoutingModule,
     FontAwesomeModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [
-    CatalogoService
+    CatalogoService,
+    EmailService
   ],
   bootstrap: [AppComponent]
 })
