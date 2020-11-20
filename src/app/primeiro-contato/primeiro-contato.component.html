@@ -29,7 +29,7 @@
         <p class="lead">Entraremos em contato através do endereço de email informado, portanto,
             verifique o email informado e fique atento ao email nos próximos dias.
         </p>
-        <input [disabled]="form.invalid || emailEnviado" class="btn-lg" type="submit">
+        <input [disabled]="form.invalid || emailEnviado" class="btn-lg btn-outline-success" type="submit">
         <div *ngIf="emailEnviado" class="alert alert-success" role="alert" style="padding-top: 40px;">
             {{mensagem}}
         </div>

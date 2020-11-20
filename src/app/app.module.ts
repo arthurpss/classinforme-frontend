@@ -18,6 +18,9 @@ import { FormsModule } from '@angular/forms';
 import { EmailService } from './shared/services/email.service';
 import { LoginEmpresaComponent } from './login-empresa/login-empresa.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DashboardEmpresaComponent } from './dashboard-empresa/dashboard-empresa.component';
+import { AnunciosComponent } from './anuncios/anuncios.component';
+import { ProdutosEmpresaComponent } from './produtos-empresa/produtos-empresa.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +33,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     RodapeComponent,
     PrimeiroContatoComponent,
     HomeComponent,
-    LoginEmpresaComponent
+    LoginEmpresaComponent,
+    DashboardEmpresaComponent,
+    AnunciosComponent,
+    ProdutosEmpresaComponent
   ],
   imports: [
     BrowserModule,

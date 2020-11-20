@@ -20,4 +20,8 @@ export class EmpresaService {
   loginEmpresa(login: Login) {
     return this.http.post(`${BASE_URL}/login-empresa`, login);
   }
+
+  getEmpresaPorCnpj(cnpj: string) {
+    return this.http.get(`${BASE_URL}/lista-empresa/${cnpj}`);
+  }
 }

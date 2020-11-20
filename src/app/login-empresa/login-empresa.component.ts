@@ -20,6 +20,6 @@ export class LoginEmpresaComponent implements OnInit {
   }
 
   loginEmpresa(): void {
-    this.empresaService.loginEmpresa(this.login);
+    this.empresaService.loginEmpresa(this.login).subscribe();
   }
 }
