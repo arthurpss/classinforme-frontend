@@ -21,6 +21,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DashboardEmpresaComponent } from './dashboard-empresa/dashboard-empresa.component';
 import { AnunciosComponent } from './anuncios/anuncios.component';
 import { ProdutosEmpresaComponent } from './produtos-empresa/produtos-empresa.component';
+import { ProdutosService } from './shared/services/produtos.service';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { ProdutosEmpresaComponent } from './produtos-empresa/produtos-empresa.co
   providers: [
     CatalogoService,
     EmailService,
+    ProdutosService
   ],
   bootstrap: [AppComponent]
 })

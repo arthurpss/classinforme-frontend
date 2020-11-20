@@ -45,7 +45,7 @@
                 Filiado ao sinfor?
             </label>
         </div>
-        <input [disabled]="form.invalid || empresaCadastrada" class="btn-lg" type="submit">
+        <input [disabled]="form.invalid || empresaCadastrada" class="btn-lg btn-outline-success" type="submit">
         <div *ngIf="empresaCadastrada" class="alert alert-success" role="alert" style="padding-top: 40px;">
             Empresa cadastrada
           </div>

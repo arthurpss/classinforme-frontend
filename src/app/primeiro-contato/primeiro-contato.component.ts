@@ -10,7 +10,7 @@ import { EmailService } from '../shared/services/email.service';
   styleUrls: ['./primeiro-contato.component.css']
 })
 export class PrimeiroContatoComponent implements OnInit {
-  catalogo: any;
+  catalogo: object;
   emailEnviado: boolean = false;
   mensagem: string;
 
