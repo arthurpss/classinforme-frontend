@@ -1,1 +1,53 @@
-<p>cadastro-empresa works!</p>
+<div class="container" style="padding-top: 70px;">
+    <div class="py-5 text-center">
+        <h2>Cadastro</h2>
+        <p class="lead">Cadastre sua empresa para poder publicar anúncios em nossa plataforma.</p>
+    </div>
+    <form #form="ngForm" (submit)="cadastraPessoa()">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" id="cod_sinfor" placeholder="Código sinfor" name="cod_sinfor"
+                [(ngModel)]="empresa.cod_sinfor">
+        </div>
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" id="cnpj" placeholder="CNPJ" name="cnpj" [(ngModel)]="empresa.cnpj"
+                required>
+        </div>
+        <small id="senha-label" class="form-text text-muted">Essa senha será utilizada para cadastro de seus
+            anúncios</small>
+        <div class="input-group mb-3">
+            <input type="password" class="form-control" id="senha" placeholder="Senha" name="senha"
+                [(ngModel)]="empresa.senha" required>
+        </div>
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" id="razao_social" placeholder="Razão Social" name="razao_social"
+                [(ngModel)]="empresa.razao_social" required>
+        </div>
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" id="cep" placeholder="CEP" name="cep" [(ngModel)]="empresa.cep"
+                required>
+        </div>
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" id="cidade" placeholder="Cidade" name="cidade"
+                [(ngModel)]="empresa.cidade" required>
+        </div>
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" id="bairro" placeholder="Bairro" name="bairro"
+                [(ngModel)]="empresa.bairro" required>
+        </div>
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" id="endereco" placeholder="Endereço" name="endereco"
+                [(ngModel)]="empresa.endereco" required>
+        </div>
+        <div class="input-group mb-3 form-check">
+            <input class="form-check-input" type="checkbox" value="" id="filiado" name="filiado"
+                [(ngModel)]="empresa.filiado">
+            <label class="form-check-label" for="filiado">
+                Filiado ao sinfor?
+            </label>
+        </div>
+        <input [disabled]="form.invalid || empresaCadastrada" class="btn-lg" type="submit">
+        <div *ngIf="empresaCadastrada" class="alert alert-success" role="alert" style="padding-top: 40px;">
+            Empresa cadastrada
+          </div>
+    </form>
+</div>

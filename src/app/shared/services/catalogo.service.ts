@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 const BASE_URL = 'http://localhost:3333';
 
@@ -11,7 +12,7 @@ export class CatalogoService {
   constructor(private http: HttpClient) {
   }
 
-  getCatalogo() {
+  getCatalogo(): Observable<object> {
     return this.http.get(`${BASE_URL}/catalogo`);
   }
 }

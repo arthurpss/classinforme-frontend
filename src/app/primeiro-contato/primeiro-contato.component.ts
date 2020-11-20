@@ -11,20 +11,45 @@ import { EmailService } from '../shared/services/email.service';
 })
 export class PrimeiroContatoComponent implements OnInit {
   catalogo: any;
+  emailEnviado: boolean = false;
+  mensagem: string;
+
+  observer = {
+    complete: () => {
+      this.mostraMensagem(false);
+    },
+    error: error => {
+      console.log("Erro no envio de email: ", error);
+      this.mostraMensagem(true);
+    }
+  }
 
   contato: PrimeiroContato = {
     razao_social: "",
     email: "",
-    tipo_produto: ""
+    tipo_produto: "Adaptador",
+    campo_livre: ""
   };
 
   constructor(private catalogoService: CatalogoService, private emailService: EmailService) { }
 
   ngOnInit(): void {
-    this.catalogoService.getCatalogo().subscribe(catalogo => this.catalogo = catalogo);
+    this.catalogoService.getCatalogo()
+      .subscribe(catalogo => this.catalogo = catalogo);
+  }
+
+  private mostraMensagem(erro: boolean): void {
+    if (erro) {
+      this.emailEnviado = false;
+      this.mensagem = "Erro no envio de email.";
+    } else {
+      this.emailEnviado = true;
+      this.mensagem = "Email enviado";
+    }
   }
 
   enviaEmail(): void {
-    this.emailService.enviaEmail(this.contato);
+    this.emailService.enviaEmail(this.contato)
+      .subscribe(this.observer);
   }
 }

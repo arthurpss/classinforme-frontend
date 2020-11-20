@@ -16,6 +16,8 @@ import { HomeComponent } from './home/home.component';
 import { CatalogoService } from './shared/services/catalogo.service';
 import { FormsModule } from '@angular/forms';
 import { EmailService } from './shared/services/email.service';
+import { LoginEmpresaComponent } from './login-empresa/login-empresa.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -27,18 +29,20 @@ import { EmailService } from './shared/services/email.service';
     CarouselProdutosComponent,
     RodapeComponent,
     PrimeiroContatoComponent,
-    HomeComponent
+    HomeComponent,
+    LoginEmpresaComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FontAwesomeModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule
   ],
   providers: [
     CatalogoService,
-    EmailService
+    EmailService,
   ],
   bootstrap: [AppComponent]
 })

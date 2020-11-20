@@ -6,23 +6,32 @@
 
 <form #form="ngForm" (submit)="enviaEmail()">
     <div class="input-group mb-3">
-        <input type="text" name="razao_social" class="form-control" aria-label="razao-social" placeholder="Razão social" 
+        <input type="text" name="razao_social" class="form-control" aria-label="razao-social" placeholder="Razão social"
             [(ngModel)]="contato.razao_social" required>
     </div>
     <div class="form-group">
-        <input type="email" class="form-control" id="email-primeiro-contato" placeholder="Email para contato" name="email"
-        [(ngModel)]="contato.email" required>
+        <input type="email" class="form-control" id="email-primeiro-contato" placeholder="Email para contato"
+            name="email" [(ngModel)]="contato.email" required>
     </div>
     <div class="form-group">
         <label for="tipo-produto">Tipo de produto</label>
-        <select class="form-control" id="tipo-produto-select" name="tipo_produto" [(ngModel)]="contato.tipo_produto" required>
+        <select class="form-control" id="tipo-produto-select" name="tipo_produto" [(ngModel)]="contato.tipo_produto"
+            required>
             <option *ngFor="let tipo_produto of catalogo">{{tipo_produto}}</option>
         </select>
+    </div>
+    <div class="form-group">
+        <label for="campo-livre">Campo livre</label>
+        <textarea class="form-control" id="campo-livre" rows="5" name="campo_livre"
+            [(ngModel)]="contato.campo_livre"></textarea>
     </div>
     <div class="py-5 text-center">
         <p class="lead">Entraremos em contato através do endereço de email informado, portanto,
             verifique o email informado e fique atento ao email nos próximos dias.
         </p>
-        <input class="btn-lg btn-success" type="submit">
+        <input [disabled]="form.invalid || emailEnviado" class="btn-lg" type="submit">
+        <div *ngIf="emailEnviado" class="alert alert-success" role="alert" style="padding-top: 40px;">
+            {{mensagem}}
+        </div>
     </div>
 </form>
