@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Anuncio } from '../shared/interfaces/anuncio.interface';
-import { Empresa } from '../shared/interfaces/empresa.interface';
 import { Produto } from '../shared/interfaces/produto.interface';
 import { AnunciosService } from '../shared/services/anuncios.service';
 import { ProdutosService } from '../shared/services/produtos.service';
@@ -31,18 +30,6 @@ export class CadastroAnuncioComponent implements OnInit {
     email: "",
     ativo: false
   };
-
-  // empresa: Empresa = {
-  //   cnpj: "",
-  //   bairro: "",
-  //   cep: "",
-  //   cidade: "",
-  //   cod_sinfor: "",
-  //   endereco: "",
-  //   filiado: false,
-  //   razao_social: "",
-  //   senha: ""
-  // };
 
   produto: Produto = {
     titulo: "",

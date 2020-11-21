@@ -16,4 +16,8 @@ export class AnunciosService {
   novoAnuncio(anuncio: Anuncio, produto: Produto): Observable<any> {
     return this.http.post(`${BASE_URL}/novo-anuncio/${produto.empresa_cnpj}`, anuncio, { responseType: "text" });
   }
+
+  listaAnunciosPorEmpresa(cnpj: string) {
+    return this.http.get(`${BASE_URL}/anuncios-empresa/${cnpj}`);
+  }
 }
