@@ -17,7 +17,8 @@
                 <li>Sem envio de email para potenciais clientes;</li>
                 <li>Suporte via email.</li>
             </ul>
-            <button type="button" class="btn btn-lg btn-block btn-outline-success">Entre em contato</button>
+            <button (click)="cadastrarAnuncio('basico')" type="button"
+                class="btn btn-lg btn-block btn-outline-success">Anuncie</button>
         </div>
     </div>
     <div class="card mb-4 shadow-sm">
@@ -32,7 +33,8 @@
                 <li>Envio de email pra quantidade limitada de potenciais clientes;</li>
                 <li>Suporte via email.</li>
             </ul>
-            <button type="button" class="btn btn-lg btn-block btn-outline-success">Entre em contato</button>
+            <button (click)="cadastrarAnuncio('avancado')" type="button"
+                class="btn btn-lg btn-block btn-outline-success">Anuncie</button>
         </div>
     </div>
     <div class="card mb-4 shadow-sm">
@@ -47,7 +49,8 @@
                 <li>Envio de email para todos os potenciais clientes;</li>
                 <li>Suporte prioritário via email.</li>
             </ul>
-            <button type="button" class="btn btn-lg btn-block btn-outline-success">Entre em contato</button>
+            <button (click)="cadastrarAnuncio('completo')" type="button"
+                class="btn btn-lg btn-block btn-outline-success">Anuncie</button>
         </div>
     </div>
 </div>

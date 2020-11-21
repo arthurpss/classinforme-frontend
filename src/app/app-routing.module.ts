@@ -6,6 +6,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginEmpresaComponent } from './login-empresa/login-empresa.component';
 import { PrimeiroContatoComponent } from './primeiro-contato/primeiro-contato.component';
 import { CadastroProdutoComponent } from './cadastro-produto/cadastro-produto.component';
+import { CadastroAnuncioComponent } from './cadastro-anuncio/cadastro-anuncio.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -14,7 +15,8 @@ const routes: Routes = [
   { path: 'cadastro-empresa', component: CadastroEmpresaComponent },
   { path: 'login', component: LoginEmpresaComponent },
   { path: 'dashboard-empresa/:cnpj', component: DashboardEmpresaComponent },
-  { path: 'cadastro-produto/:cnpj', component: CadastroProdutoComponent}
+  { path: 'cadastro-produto/:cnpj', component: CadastroProdutoComponent },
+  { path: 'cadastro-anuncio/:cnpj/:plano', component: CadastroAnuncioComponent }
 ];
 
 @NgModule({

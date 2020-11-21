@@ -22,6 +22,7 @@ import { DashboardEmpresaComponent } from './dashboard-empresa/dashboard-empresa
 import { AnunciosComponent } from './anuncios/anuncios.component';
 import { ProdutosEmpresaComponent } from './produtos-empresa/produtos-empresa.component';
 import { ProdutosService } from './shared/services/produtos.service';
+import { CadastroAnuncioComponent } from './cadastro-anuncio/cadastro-anuncio.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { ProdutosService } from './shared/services/produtos.service';
     LoginEmpresaComponent,
     DashboardEmpresaComponent,
     AnunciosComponent,
-    ProdutosEmpresaComponent
+    ProdutosEmpresaComponent,
+    CadastroAnuncioComponent
   ],
   imports: [
     BrowserModule,

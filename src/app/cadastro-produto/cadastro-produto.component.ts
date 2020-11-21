@@ -55,7 +55,7 @@ export class CadastroProdutoComponent implements OnInit {
   private mostraMensagem(erro: boolean): void {
     if (erro) {
       this.produtoCadastrado = false;
-      this.mensagem = "Erro no cadastro.";
+      this.mensagem = "Erro no cadastro";
     } else {
       this.produtoCadastrado = true;
       this.mensagem = "Produto cadastrado";
