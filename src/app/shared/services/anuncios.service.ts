@@ -14,7 +14,11 @@ export class AnunciosService {
   constructor(private http: HttpClient) { }
 
   novoAnuncio(anuncio: Anuncio, produto: Produto): Observable<any> {
-    return this.http.post(`${BASE_URL}/novo-anuncio/${produto.empresa_cnpj}`, anuncio, { responseType: "text" });
+    const anuncioBody = {
+      produto_id: anuncio.produto_id,
+      email: anuncio.email
+    }
+    return this.http.post(`${BASE_URL}/novo-anuncio/${produto.empresa_cnpj}/${anuncio.plano}`, anuncioBody, { responseType: "text" });
   }
 
   listaAnunciosPorEmpresa(cnpj: string) {

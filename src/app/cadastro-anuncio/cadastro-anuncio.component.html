@@ -11,7 +11,7 @@
         <div class="input-group mb-3">
             <select class="form-control" id="produto-select" name="produto_id" [(ngModel)]="anuncio.produto_id"
                 required>
-                <option *ngFor="let produto of produtos">{{produto.titulo}}</option>
+                <option [value]="produto.produto_id" *ngFor="let produto of produtos">{{produto.titulo}}</option>
             </select>
         </div>
         <div class="input-group mb-3">

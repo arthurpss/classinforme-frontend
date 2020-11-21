@@ -34,6 +34,7 @@ export class CadastroAnuncioComponent implements OnInit {
     ativo: false
   };
 
+
   produto: Produto = {
     titulo: "",
     descricao: "",
