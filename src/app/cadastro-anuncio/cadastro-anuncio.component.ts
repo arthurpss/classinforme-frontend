@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Anuncio } from '../shared/interfaces/anuncio.interface';
 import { Produto } from '../shared/interfaces/produto.interface';
 import { AnunciosService } from '../shared/services/anuncios.service';
@@ -42,12 +45,26 @@ export class CadastroAnuncioComponent implements OnInit {
 
   produtos: object;
 
-  constructor(private anuncioService: AnunciosService, private produtoService: ProdutosService) { }
+  constructor(private route: ActivatedRoute, private anuncioService: AnunciosService, private produtoService: ProdutosService) { }
 
   ngOnInit(): void {
+    this.getPlano().subscribe(plano => this.anuncio.plano = plano);
+    this.getCnpj().subscribe(cnpj => this.produto.empresa_cnpj = cnpj);
     this.produtoService.listaProdutosPorEmpresa(this.produto.empresa_cnpj).subscribe(produtos => {
       this.produtos = produtos;
     });
+  }
+
+  private getCnpj(): Observable<string> {
+    return this.route.paramMap.pipe(
+      map(params => params.get('cnpj'))
+    );
+  }
+
+  private getPlano(): Observable<string> {
+    return this.route.paramMap.pipe(
+      map(params => params.get('plano'))
+    );
   }
 
   private mostraMensagem(erro: boolean): void {
