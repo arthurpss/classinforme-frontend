@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Empresa } from '../interfaces/empresa.interface';
 import { Login } from '../interfaces/login.interface';
+import { Observable } from 'rxjs';
 
 const BASE_URL = 'http://localhost:3333';
 
@@ -13,8 +14,8 @@ export class EmpresaService {
   constructor(private http: HttpClient) {
   }
 
-  async cadastraEmpresa(empresa: Empresa) {
-    return this.http.post(`${BASE_URL}/nova-empresa`, empresa);
+  cadastraEmpresa(empresa: Empresa): Observable<any> {
+    return this.http.post(`${BASE_URL}/nova-empresa`, empresa, { responseType: "text" });
   }
 
   loginEmpresa(login: Login) {

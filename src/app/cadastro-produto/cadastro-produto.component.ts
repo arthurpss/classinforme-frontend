@@ -3,7 +3,7 @@ import { Produto } from '../shared/interfaces/produto.interface';
 import { ProdutosService } from '../shared/services/produtos.service';
 import { CatalogoService } from '../shared/services/catalogo.service';
 import { Observable } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 
 @Component({
@@ -18,6 +18,7 @@ export class CadastroProdutoComponent implements OnInit {
   observer = {
     complete: () => {
       this.mostraMensagem(false);
+      this.router.navigateByUrl(`dashboard-empresa/${this.produto.empresa_cnpj}`);
     },
     error: error => {
       console.log("Erro no cadastro: ", error);
@@ -38,7 +39,8 @@ export class CadastroProdutoComponent implements OnInit {
 
   mensagem: string;
 
-  constructor(private route: ActivatedRoute, private produtoService: ProdutosService, private catalogoService: CatalogoService) { }
+  constructor(private route: ActivatedRoute, private produtoService: ProdutosService,
+    private catalogoService: CatalogoService, private router: Router) { }
 
   ngOnInit(): void {
     this.getCnpj().subscribe(cnpj => this.produto.empresa_cnpj = cnpj);

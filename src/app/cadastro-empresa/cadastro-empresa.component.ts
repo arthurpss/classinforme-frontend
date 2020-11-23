@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Empresa } from '../shared/interfaces/empresa.interface';
 import { EmpresaService } from '../shared/services/empresa.service';
 
@@ -23,17 +24,36 @@ export class CadastroEmpresaComponent implements OnInit {
     filiado: false
   };
 
-  constructor(private empresaService: EmpresaService) { }
+  observer = {
+    complete: () => {
+      this.mostraMensagem(false);
+      this.router.navigateByUrl(`dashboard-empresa/${this.empresa.cnpj}`)
+    },
+    error: error => {
+      console.log("Erro no cadastro: ", error);
+      this.mostraMensagem(true);
+    }
+  }
+
+  mensagem: string;
+
+  constructor(private empresaService: EmpresaService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  private mostraMensagem(): void {
-    this.empresaCadastrada = true
+  private mostraMensagem(erro: boolean): void {
+    if (erro) {
+      this.empresaCadastrada = false;
+      this.mensagem = "Erro no cadastro";
+    } else {
+      this.empresaCadastrada = true;
+      this.mensagem = "Produto cadastrado";
+    }
   }
 
-  cadastraPessoa(): void {
+  cadsatraEmpresa(): void {
     this.empresaService.cadastraEmpresa(this.empresa)
-      .then(() => this.mostraMensagem());
+      .subscribe(this.observer);
   }
 }
