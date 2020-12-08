@@ -8,6 +8,7 @@ const BASE_URL = 'http://localhost:3333';
 @Injectable({
   providedIn: 'root'
 })
+
 export class ProdutosService {
 
   constructor(private http: HttpClient) {
