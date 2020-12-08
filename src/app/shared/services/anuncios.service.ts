@@ -3,8 +3,9 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Anuncio } from '../interfaces/anuncio.interface';
 import { Produto } from '../interfaces/produto.interface';
+import { environment } from '../../../environments/environment';
 
-const BASE_URL = 'http://localhost:3333';
+const BASE_URL = environment.BASE_URL;
 
 @Injectable({
   providedIn: 'root'

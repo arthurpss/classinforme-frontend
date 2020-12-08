@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { PrimeiroContato } from '../interfaces/primeiro-contato.interface';
+import { environment } from '../../../environments/environment';
 
-const BASE_URL = 'http://localhost:3333';
+const BASE_URL = environment.BASE_URL;
 
 @Injectable({
   providedIn: 'root'
