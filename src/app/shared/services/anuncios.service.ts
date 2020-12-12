@@ -25,4 +25,16 @@ export class AnunciosService {
   listaAnunciosPorEmpresa(cnpj: string) {
     return this.http.get(`${BASE_URL}/anuncios-empresa/${cnpj}`);
   }
+
+  listaAnuncios() {
+    return this.http.get(`${BASE_URL}/anuncios`);
+  }
+
+  listaAnunciosAtivos() {
+    return this.http.get(`${BASE_URL}/anuncios-ativos`);
+  }
+
+  ativaDesativaAnuncio(anuncio_id: string, ativar: boolean) {
+    return ativar ? this.http.patch(`${BASE_URL}/${anuncio_id}`, 1) : this.http.patch(`${BASE_URL}/x`, 0);
+  }
 }

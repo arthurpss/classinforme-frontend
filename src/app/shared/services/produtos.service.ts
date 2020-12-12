@@ -22,4 +22,8 @@ export class ProdutosService {
   listaProdutosPorEmpresa(cnpj: string) {
     return this.http.get(`${BASE_URL}/produtos-empresa/${cnpj}`)
   }
+
+  listaProdutoPorId(id: number) {
+    return this.http.get(`${BASE_URL}/produto-id/${id}`);
+  }
 }
