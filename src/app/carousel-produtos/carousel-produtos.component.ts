@@ -3,8 +3,6 @@ import { Anuncio } from '../shared/interfaces/anuncio.interface';
 import { Produto } from '../shared/interfaces/produto.interface';
 import { AnunciosService } from '../shared/services/anuncios.service';
 import { ProdutosService } from '../shared/services/produtos.service';
-import { of } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-carousel-produtos',
@@ -13,18 +11,20 @@ import { map } from 'rxjs/operators';
 })
 export class CarouselProdutosComponent implements OnInit {
 
-  anuncios: any;
-  produtosAnunciados: Array<any>
+  anuncios: Anuncio[];
+  produtosAnunciados: Produto[] = [];
 
   constructor(private anuncioService: AnunciosService, private produtosService: ProdutosService) { }
 
   ngOnInit(): void {
     this.anuncioService.listaAnunciosAtivos().subscribe(anuncios => {
-      map(anuncio => this.produtosAnunciados.push(anuncio))(of(anuncios))
-        .subscribe(produtos => console.log(produtos))
-      this.anuncios = anuncios;
-      console.log(this.anuncios)
+      this.anuncios = anuncios
+      this.anuncios.forEach(anuncio => {
+        this.produtosService.listaProdutoPorId(anuncio.produto_id)
+          .subscribe(produto => {
+            this.produtosAnunciados.push(produto)
+          })
+      })
     })
-    console.log(this.produtosAnunciados);
   }
 }

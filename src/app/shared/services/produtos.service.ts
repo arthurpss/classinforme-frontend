@@ -23,7 +23,7 @@ export class ProdutosService {
     return this.http.get(`${BASE_URL}/produtos-empresa/${cnpj}`)
   }
 
-  listaProdutoPorId(id: number) {
-    return this.http.get(`${BASE_URL}/produto-id/${id}`);
+  listaProdutoPorId(id: string): Observable<Produto> {
+    return this.http.get<Produto>(`${BASE_URL}/produto-id/${id}`);
   }
 }

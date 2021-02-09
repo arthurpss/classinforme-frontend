@@ -1,5 +1,16 @@
 <div class="container marketing">
   <!-- row -->
+  <div *ngIf="produtosAnunciados" class="row">
+    <div *ngFor="let produto of produtosAnunciados" class="col-lg-4">
+      <img src="../../assets/images/roteador-tplink.jpg" class="bd-placeholder-img rounded-circle" width="140"
+        height="140" alt="..." focusable="false" role="img" aria-label="Placeholder: 140x140">
+      <h2>{{produto.titulo}}</h2>
+      <p>{{produto.descricao}}</p>
+      <p><a class="btn btn-success" href="#" role="button">Conheça o produto</a></p>
+    </div>
+  </div>
+
+  <h1>MOCK</h1>
   <div class="row">
     <div class="col-lg-4">
       <img src="../../assets/images/roteador-tplink.jpg" class="bd-placeholder-img rounded-circle" width="140"
@@ -9,11 +20,11 @@
       <p><a class="btn btn-success" href="#" role="button">Conheça o produto</a></p>
     </div><!-- /.col-lg-4 -->
     <div class="col-lg-4">
-      <img src="../../assets/images/erp-software.jpg" class="bd-placeholder-img rounded-circle" width="140"
-        height="140" alt="..." focusable="false" role="img" aria-label="Placeholder: 140x140">
+      <img src="../../assets/images/erp-software.jpg" class="bd-placeholder-img rounded-circle" width="140" height="140"
+        alt="..." focusable="false" role="img" aria-label="Placeholder: 140x140">
       <h2>Software ERP</h2>
       <p>Descrição simples do produto</p>
-      <p><a class="btn btn-success" href="#" role="button">Conheço produto</a></p>
+      <p><a class="btn btn-success" href="#" role="button">Conheça o produto</a></p>
     </div><!-- /.col-lg-4 -->
     <div class="col-lg-4">
       <img src="../../assets/images/seguranca-software.png" class="bd-placeholder-img rounded-circle" width="140"
@@ -35,7 +46,8 @@
       <p class="lead">A placa de vídeo X é capaz de rodar todos os jogos da nova geração.</p>
     </div>
     <div class="col-md-5">
-      <img src="../../assets/images/placa-video.jpg" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500"
+      <img src="../../assets/images/placa-video.jpg"
+        class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500"
         preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500">
     </div>
   </div>
@@ -48,7 +60,8 @@
       <p class="lead">Utilize nossa ferramenta para automatizar seus processos.</p>
     </div>
     <div class="col-md-5 order-md-1">
-      <img src="../../assets/images/ia.jpg" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500"
+      <img src="../../assets/images/ia.jpg"
+        class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500"
         preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500">
     </div>
   </div>
@@ -61,7 +74,8 @@
       <p class="lead">Alugue nosso servidor para hospedar suas aplicações.</p>
     </div>
     <div class="col-md-5">
-      <img src="../../assets/images/servidor.jpg" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500"
+      <img src="../../assets/images/servidor.jpg"
+        class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500"
         preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500">
     </div>
   </div>

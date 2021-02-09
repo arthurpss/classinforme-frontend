@@ -30,8 +30,8 @@ export class AnunciosService {
     return this.http.get(`${BASE_URL}/anuncios`);
   }
 
-  listaAnunciosAtivos() {
-    return this.http.get(`${BASE_URL}/anuncios-ativos`);
+  listaAnunciosAtivos(): Observable<Anuncio[]> {
+    return this.http.get<Anuncio[]>(`${BASE_URL}/anuncios-ativos`);
   }
 
   ativaDesativaAnuncio(anuncio_id: string, ativar: boolean) {
