@@ -22,7 +22,9 @@ export class ProdutosComponent implements OnInit {
       this.anuncios.forEach(anuncio => {
         this.produtosService.listaProdutoPorId(anuncio.produto_id)
           .subscribe(produto => {
+            console.log(produto)
             this.produtosAnunciados.push(produto)
+            console.log(this.produtosAnunciados)
           })
       })
     })

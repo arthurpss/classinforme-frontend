@@ -120,6 +120,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "classinforme-frontend"
+    }
+  },
+  "defaultProject": "classinforme-frontend",
+  "cli": {
+    "analytics": false
+  }
 }
