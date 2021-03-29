@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Produto } from '../shared/interfaces/produto.interface';
+import { Imagem } from '../shared/interfaces/imagem.interface';
 import { ProdutosService } from '../shared/services/produtos.service';
 import { CatalogoService } from '../shared/services/catalogo.service';
+import { ImagemService } from '../shared/services/imagem.service';
 import { Observable } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-cadastro-produto',
@@ -18,7 +21,7 @@ export class CadastroProdutoComponent implements OnInit {
   observer = {
     complete: () => {
       this.mostraMensagem(false);
-      this.router.navigateByUrl(`dashboard-empresa/${this.produto.empresa_cnpj}`);
+      // this.router.navigateByUrl(`dashboard-empresa/${this.produto.empresa_cnpj}`);
     },
     error: error => {
       console.log("Erro no cadastro: ", error);
@@ -27,11 +30,10 @@ export class CadastroProdutoComponent implements OnInit {
   }
 
   produto: Produto = {
+    produto_id: "",
     categoria: "Adaptador",
     titulo: "",
     descricao: "",
-    caminho_img: "",
-    caminho_video: "",
     empresa_cnpj: ""
   };
 
@@ -39,8 +41,28 @@ export class CadastroProdutoComponent implements OnInit {
 
   mensagem: string;
 
+  id = () => {
+    let s4 = () => {
+      return Math.floor((1 + Math.random()) * 0x10000)
+        .toString(16)
+        .substring(1);
+    }
+    //return id of format 'aaaaaaaa'-'aaaa'-'aaaa'-'aaaa'-'aaaaaaaaaaaa'
+    return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+  }
+
+  imagem: Imagem = {
+    key: "",
+    name: "",
+    size: undefined,
+    url: "",
+    produto_id: ""
+  };
+
+  files: FileList;
+
   constructor(private route: ActivatedRoute, private produtoService: ProdutosService,
-    private catalogoService: CatalogoService, private router: Router) { }
+    private catalogoService: CatalogoService, private router: Router, private imagemService: ImagemService) { }
 
   ngOnInit(): void {
     this.getCnpj().subscribe(cnpj => this.produto.empresa_cnpj = cnpj);
@@ -65,7 +87,21 @@ export class CadastroProdutoComponent implements OnInit {
   }
 
   cadastraProduto(): void {
+    this.produto.produto_id = this.id();
     this.produtoService.novoProduto(this.produto)
       .subscribe(this.observer);
+  }
+
+  onFileSelected(event) {
+    console.log(event);
+    if (event.target.files) {
+      this.files = event.target.files;
+    }
+  }
+
+  cadastraImagem(): void {
+    // console.log(this.imagem);
+    // this.imagem.produto_id = this.produto.produto_id;
+    this.imagemService.novaImagem(this.files, this.produto.produto_id).subscribe();
   }
 }

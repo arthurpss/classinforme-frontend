@@ -36,12 +36,11 @@ export class CadastroAnuncioComponent implements OnInit {
 
 
   produto: Produto = {
+    produto_id: "",
     titulo: "",
     descricao: "",
     categoria: "",
-    empresa_cnpj: "",
-    caminho_img: "",
-    caminho_video: ""
+    empresa_cnpj: ""
   }
 
   produtos: object;
