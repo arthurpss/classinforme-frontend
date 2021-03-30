@@ -93,15 +93,16 @@ export class CadastroProdutoComponent implements OnInit {
   }
 
   onFileSelected(event) {
-    console.log(event);
     if (event.target.files) {
       this.files = event.target.files;
     }
   }
 
   cadastraImagem(): void {
-    // console.log(this.imagem);
-    // this.imagem.produto_id = this.produto.produto_id;
-    this.imagemService.novaImagem(this.files, this.produto.produto_id).subscribe();
+    let file: File;
+    for (let i = 0; i < this.files.length; i++) {
+      file = this.files.item(i);
+      this.imagemService.novaImagem(file, this.produto.produto_id);
+    }
   }
 }

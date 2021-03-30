@@ -14,12 +14,9 @@ export class ImagemService {
   constructor(private http: HttpClient) {
   }
 
-  novaImagem(files: FileList, produto_id: string): Observable<any> {
-    // console.log(files);
+  novaImagem(file: File, produto_id: string) {
     const formData = new FormData();
-    for( let i = 0; i < files.length; i++) {
-      formData.append("file", files[i]);
-      return this.http.post(`${BASE_URL}/nova-imagem/${produto_id}`, formData);
-    }
+    formData.append("file", file);
+    return this.http.post(`${BASE_URL}/nova-imagem/${produto_id}`, formData).subscribe();
   }
 }
