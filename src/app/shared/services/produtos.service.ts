@@ -19,8 +19,8 @@ export class ProdutosService {
     return this.http.post(`${BASE_URL}/novo-produto/${produto.empresa_cnpj}`, produto, { responseType: "text" });
   }
 
-  listaProdutosPorEmpresa(cnpj: string) {
-    return this.http.get(`${BASE_URL}/produtos-empresa/${cnpj}`)
+  listaProdutosPorEmpresa(cnpj: string): Promise<Produto[]> {
+    return this.http.get<Produto[]>(`${BASE_URL}/produtos-empresa/${cnpj}`).toPromise();
   }
 
   listaProdutoPorId(id: string): Observable<Produto> {

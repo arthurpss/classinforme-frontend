@@ -40,6 +40,7 @@ export class CadastroAnuncioComponent implements OnInit {
     titulo: "",
     descricao: "",
     categoria: "",
+    thumbnail: undefined,
     empresa_cnpj: ""
   }
 
@@ -50,7 +51,7 @@ export class CadastroAnuncioComponent implements OnInit {
   ngOnInit(): void {
     this.getPlano().subscribe(plano => this.anuncio.plano = plano);
     this.getCnpj().subscribe(cnpj => this.produto.empresa_cnpj = cnpj);
-    this.produtoService.listaProdutosPorEmpresa(this.produto.empresa_cnpj).subscribe(produtos => {
+    this.produtoService.listaProdutosPorEmpresa(this.produto.empresa_cnpj).then(produtos => {
       this.produtos = produtos;
     });
   }

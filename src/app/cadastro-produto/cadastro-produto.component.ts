@@ -34,7 +34,8 @@ export class CadastroProdutoComponent implements OnInit {
     categoria: "Adaptador",
     titulo: "",
     descricao: "",
-    empresa_cnpj: ""
+    thumbnail: undefined,
+    empresa_cnpj: "",
   };
 
   produtoCadastrado: boolean = false;

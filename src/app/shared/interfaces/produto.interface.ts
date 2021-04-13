@@ -3,7 +3,7 @@ export interface Produto {
     categoria: string;
     titulo: string;
     descricao: string;
-    // caminho_img: string;
+    thumbnail: any;
     // caminho_video: string;
     empresa_cnpj: string;
 }
