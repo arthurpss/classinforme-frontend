@@ -7,7 +7,6 @@ import { Observable } from 'rxjs';
 import { Imagem } from '../shared/interfaces/imagem.interface';
 import { ImagemService } from '../shared/services/imagem.service';
 import { Produto } from '../shared/interfaces/produto.interface';
-import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-produtos-empresa',
@@ -21,16 +20,13 @@ export class ProdutosEmpresaComponent implements OnInit {
   cnpj: string;
   imagens: Imagem[] = [];
 
-  constructor(private route: ActivatedRoute, private produtoService: ProdutosService, private router: Router, private imagemService: ImagemService, private sanitizer: DomSanitizer) { }
+  constructor(private route: ActivatedRoute, private produtoService: ProdutosService, private router: Router, private imagemService: ImagemService) { }
 
   ngOnInit(): void {
     this.getCnpj().subscribe(cnpj => this.cnpj = cnpj);
     this.produtoService.listaProdutosPorEmpresa(this.cnpj).then(produtos => {
       this.produtos = produtos;
       this.getImagens();
-      // this.imagens.forEach(imagem => {
-      //   this.imagemService.getImagemByKey(imagem.key);
-      // })
     });
   }
 

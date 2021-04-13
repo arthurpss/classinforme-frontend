@@ -3,8 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { Imagem } from '../interfaces/imagem.interface';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import { map } from 'rxjs/operators';
-import { DomSanitizer } from '@angular/platform-browser';
 
 const BASE_URL = environment.BASE_URL;
 
@@ -21,7 +19,7 @@ export class ImagemService {
     formData.append("file", file);
     return this.http.post(`${BASE_URL}/nova-imagem/${produto_id}`, formData).subscribe();
   }
-  // : Observable<Imagem[]>
+  
   getImagensByProdutoId(produto_id: string): Promise<Imagem[]> {
     return this.http.get<Imagem[]>(`${BASE_URL}/lista-imagens/${produto_id}`).toPromise();
   }
