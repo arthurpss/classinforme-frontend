@@ -59,8 +59,7 @@ export class ProdutosEmpresaComponent implements OnInit {
     this.produtos.forEach(produto => {
       this.getImagemByProdutoId(produto.produto_id).then(
         imagens => {
-          imagens.forEach((imagem, i) => {
-            console.log(imagem.key);
+          imagens.forEach(imagem => {
             this.imagemService.getImagemByKey(imagem.key).subscribe(data => {
               this.createImageFromBlob(produto, data);
             })

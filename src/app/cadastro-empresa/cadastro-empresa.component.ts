@@ -48,7 +48,7 @@ export class CadastroEmpresaComponent implements OnInit {
       this.mensagem = "Erro no cadastro";
     } else {
       this.empresaCadastrada = true;
-      this.mensagem = "Produto cadastrado";
+      this.mensagem = "Empresa cadastrada";
     }
   }
 

@@ -39,6 +39,8 @@ export class CadastroProdutoComponent implements OnInit {
   };
 
   produtoCadastrado: boolean = false;
+  imagemAdicionada: boolean = false;
+  arquivoSelecionado: boolean = false;
 
   mensagem: string;
 
@@ -63,7 +65,7 @@ export class CadastroProdutoComponent implements OnInit {
   files: FileList;
 
   constructor(private route: ActivatedRoute, private produtoService: ProdutosService,
-    private catalogoService: CatalogoService, private router: Router, private imagemService: ImagemService) { }
+    private catalogoService: CatalogoService, private imagemService: ImagemService) { }
 
   ngOnInit(): void {
     this.getCnpj().subscribe(cnpj => this.produto.empresa_cnpj = cnpj);
@@ -96,6 +98,7 @@ export class CadastroProdutoComponent implements OnInit {
   onFileSelected(event) {
     if (event.target.files) {
       this.files = event.target.files;
+      this.arquivoSelecionado = true;
     }
   }
 
@@ -105,5 +108,6 @@ export class CadastroProdutoComponent implements OnInit {
       file = this.files.item(i);
       this.imagemService.novaImagem(file, this.produto.produto_id);
     }
+    this.imagemAdicionada = true;
   }
 }

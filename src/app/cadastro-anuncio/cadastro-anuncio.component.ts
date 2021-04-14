@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Anuncio } from '../shared/interfaces/anuncio.interface';
@@ -20,6 +20,7 @@ export class CadastroAnuncioComponent implements OnInit {
   observer = {
     complete: () => {
       this.mostraMensagem(false);
+      this.router.navigateByUrl(`dashboard-empresa/${this.produto.empresa_cnpj}`)
     },
     error: error => {
       console.log("Erro no cadastro: ", error);
@@ -46,7 +47,7 @@ export class CadastroAnuncioComponent implements OnInit {
 
   produtos: object;
 
-  constructor(private route: ActivatedRoute, private anuncioService: AnunciosService, private produtoService: ProdutosService) { }
+  constructor(private route: ActivatedRoute, private anuncioService: AnunciosService, private produtoService: ProdutosService, private router: Router) { }
 
   ngOnInit(): void {
     this.getPlano().subscribe(plano => this.anuncio.plano = plano);

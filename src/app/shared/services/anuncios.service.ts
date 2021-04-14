@@ -35,6 +35,6 @@ export class AnunciosService {
   }
 
   ativaDesativaAnuncio(anuncio_id: string, ativar: boolean) {
-    return ativar ? this.http.patch(`${BASE_URL}/${anuncio_id}`, 1) : this.http.patch(`${BASE_URL}/x`, 0);
+    return ativar ? this.http.patch(`${BASE_URL}/${anuncio_id}`, 1) : this.http.patch(`${BASE_URL}/${anuncio_id}`, 0);
   }
 }
