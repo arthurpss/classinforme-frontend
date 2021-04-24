@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Login } from '../shared/interfaces/login.interface';
-import { EmpresaService } from '../shared/services/empresa.service';
+import { JwtService } from '../shared/services/jwt.service';
 
 @Component({
   selector: 'app-login-empresa',
@@ -15,22 +15,29 @@ export class LoginEmpresaComponent implements OnInit {
     senha: ""
   };
 
-  observer = {
-    complete: () => {
+  /* observer = {
+    complete: ()) => {
       console.log("Logou")
+      localStorage.setItem('token', token);
       this.router.navigateByUrl(`dashboard-empresa/${this.login.cnpj}`)
     },
     error: error => {
-      console.log("Erro no login: ", error);
-    }
-  }
 
-  constructor(private empresaService: EmpresaService, private router: Router) { }
+    }
+   }*/
+
+  constructor(private jwtService: JwtService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
   loginEmpresa(): void {
-    this.empresaService.loginEmpresa(this.login).subscribe(this.observer);
+    this.jwtService.loginEmpresa(this.login).subscribe(res => {
+      console.log("Logou")
+      localStorage.setItem('token', res.token);
+      localStorage.setItem('refreshToken', res.refreshToken);
+      localStorage.setItem('cnpj', res.cnpj);
+      this.router.navigateByUrl(`dashboard-empresa/${this.login.cnpj}`)
+    })
   }
 }

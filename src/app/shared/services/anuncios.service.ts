@@ -19,11 +19,11 @@ export class AnunciosService {
       produto_id: anuncio.produto_id,
       email: anuncio.email
     }
-    return this.http.post(`${BASE_URL}/novo-anuncio/${produto.empresa_cnpj}/${anuncio.plano}`, anuncioBody, { responseType: "text" });
+    return this.http.post(`${BASE_URL}/anuncio/${produto.empresa_cnpj}/${anuncio.plano}`, anuncioBody, { responseType: "text" });
   }
 
   listaAnunciosPorEmpresa(cnpj: string) {
-    return this.http.get(`${BASE_URL}/anuncios-empresa/${cnpj}`);
+    return this.http.get(`${BASE_URL}/anuncios/${cnpj}`);
   }
 
   listaAnuncios() {
@@ -35,6 +35,6 @@ export class AnunciosService {
   }
 
   ativaDesativaAnuncio(anuncio_id: string, ativar: boolean) {
-    return ativar ? this.http.patch(`${BASE_URL}/${anuncio_id}`, 1) : this.http.patch(`${BASE_URL}/${anuncio_id}`, 0);
+    return ativar ? this.http.patch(`${BASE_URL}/anuncio/${anuncio_id}`, 1) : this.http.patch(`${BASE_URL}/${anuncio_id}`, 0);
   }
 }

@@ -27,7 +27,7 @@ export class CadastroEmpresaComponent implements OnInit {
   observer = {
     complete: () => {
       this.mostraMensagem(false);
-      this.router.navigateByUrl(`dashboard-empresa/${this.empresa.cnpj}`)
+      this.router.navigateByUrl("login")
     },
     error: error => {
       console.log("Erro no cadastro: ", error);

@@ -52,7 +52,7 @@ export class CadastroAnuncioComponent implements OnInit {
   ngOnInit(): void {
     this.getPlano().subscribe(plano => this.anuncio.plano = plano);
     this.getCnpj().subscribe(cnpj => this.produto.empresa_cnpj = cnpj);
-    this.produtoService.listaProdutosPorEmpresa(this.produto.empresa_cnpj).then(produtos => {
+    this.produtoService.listaProdutosPorEmpresa(this.produto.empresa_cnpj ,"").then(produtos => { //TODO: Passar token nessa chamada
       this.produtos = produtos;
     });
   }

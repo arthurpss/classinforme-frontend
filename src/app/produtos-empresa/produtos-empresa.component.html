@@ -1,4 +1,7 @@
-<main role="main">
+<main *ngIf="!isLogado" role="main">
+    <h3>Não autorizado</h3>
+</main>
+<main *ngIf="isLogado" role="main">
     <section class="text-center">
         <div class="container">
             <h1>Produtos</h1>

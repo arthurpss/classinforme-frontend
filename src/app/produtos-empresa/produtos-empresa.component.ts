@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { Imagem } from '../shared/interfaces/imagem.interface';
 import { ImagemService } from '../shared/services/imagem.service';
 import { Produto } from '../shared/interfaces/produto.interface';
+import { JwtService } from '../shared/services/jwt.service';
 
 @Component({
   selector: 'app-produtos-empresa',
@@ -19,15 +20,23 @@ export class ProdutosEmpresaComponent implements OnInit {
   empresa: Empresa;
   cnpj: string;
   imagens: Imagem[] = [];
+  isLogado: boolean;
 
-  constructor(private route: ActivatedRoute, private produtoService: ProdutosService, private router: Router, private imagemService: ImagemService) { }
+  constructor(private route: ActivatedRoute, private produtoService: ProdutosService, private router: Router, private imagemService: ImagemService, private jwtService: JwtService) { }
 
   ngOnInit(): void {
     this.getCnpj().subscribe(cnpj => this.cnpj = cnpj);
-    this.produtoService.listaProdutosPorEmpresa(this.cnpj).then(produtos => {
-      this.produtos = produtos;
-      this.getImagens();
-    });
+    this.isLogado = this.jwtService.isLoggedIn(this.cnpj);
+    if (this.isLogado) {
+      this.jwtService.getRefreshToken().then(refreshToken => {
+        this.jwtService.getToken(refreshToken).subscribe(res => {
+          this.produtoService.listaProdutosPorEmpresa(this.cnpj, res.token).then(produtos => {
+            this.produtos = produtos;
+            this.getImagens();
+          });
+        });
+      })
+    }
   }
 
   private getCnpj(): Observable<string> {

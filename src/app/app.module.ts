@@ -39,7 +39,7 @@ import { CadastroAnuncioComponent } from './cadastro-anuncio/cadastro-anuncio.co
     DashboardEmpresaComponent,
     AnunciosComponent,
     ProdutosEmpresaComponent,
-    CadastroAnuncioComponent,
+    CadastroAnuncioComponent
   ],
   imports: [
     BrowserModule,

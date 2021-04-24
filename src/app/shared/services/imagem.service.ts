@@ -17,11 +17,11 @@ export class ImagemService {
   novaImagem(file: File, produto_id: string) {
     const formData = new FormData();
     formData.append("file", file);
-    return this.http.post(`${BASE_URL}/nova-imagem/${produto_id}`, formData).subscribe();
+    return this.http.post(`${BASE_URL}/imagem/${produto_id}`, formData).subscribe();
   }
   
   getImagensByProdutoId(produto_id: string): Promise<Imagem[]> {
-    return this.http.get<Imagem[]>(`${BASE_URL}/lista-imagens/${produto_id}`).toPromise();
+    return this.http.get<Imagem[]>(`${BASE_URL}/imagens/${produto_id}`).toPromise();
   }
 
   getImagemByKey(key: string): Observable<any> {
