@@ -7,6 +7,7 @@ import { ImagemService } from '../shared/services/imagem.service';
 import { Observable } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs/operators';
+import { JwtService } from '../shared/services/jwt.service';
 
 
 @Component({
@@ -63,12 +64,16 @@ export class CadastroProdutoComponent implements OnInit {
   };
 
   files: FileList;
+  isLogado: boolean;
 
   constructor(private route: ActivatedRoute, private produtoService: ProdutosService,
-    private catalogoService: CatalogoService, private imagemService: ImagemService) { }
+    private catalogoService: CatalogoService, private imagemService: ImagemService, private jwtService: JwtService, private router: Router) { }
 
   ngOnInit(): void {
-    this.getCnpj().subscribe(cnpj => this.produto.empresa_cnpj = cnpj);
+    this.getCnpj().subscribe(cnpj => {
+      this.produto.empresa_cnpj = cnpj
+      this.isLogado = this.jwtService.isLoggedIn(cnpj);
+    });
     this.catalogoService.getCatalogo()
       .subscribe(catalogo => this.catalogo = catalogo);
   }
@@ -91,11 +96,18 @@ export class CadastroProdutoComponent implements OnInit {
 
   cadastraProduto(): void {
     this.produto.produto_id = this.id();
-    this.produtoService.novoProduto(this.produto)
-      .subscribe(this.observer);
+    this.jwtService.getRefreshToken().then(refreshToken => {
+      console.log(refreshToken)
+      this.jwtService.getToken(refreshToken).subscribe(res => {
+        console.log(res)
+        this.produtoService.novoProduto(this.produto, res.token)
+          .subscribe(this.observer);
+      });
+    });
   }
 
-  onFileSelected(event) {
+
+  onFileSelected(event): void {
     if (event.target.files) {
       this.files = event.target.files;
       this.arquivoSelecionado = true;
@@ -109,5 +121,6 @@ export class CadastroProdutoComponent implements OnInit {
       this.imagemService.novaImagem(file, this.produto.produto_id);
     }
     this.imagemAdicionada = true;
+    this.router.navigateByUrl(`dashboard-empresa/${this.produto.empresa_cnpj}`);
   }
 }

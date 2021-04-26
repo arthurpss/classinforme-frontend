@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Anuncio } from '../interfaces/anuncio.interface';
@@ -14,12 +14,12 @@ export class AnunciosService {
 
   constructor(private http: HttpClient) { }
 
-  novoAnuncio(anuncio: Anuncio, produto: Produto): Observable<any> {
+  novoAnuncio(anuncio: Anuncio, produto: Produto, token: string): Observable<any> {
     const anuncioBody = {
       produto_id: anuncio.produto_id,
       email: anuncio.email
     }
-    return this.http.post(`${BASE_URL}/anuncio/${produto.empresa_cnpj}/${anuncio.plano}`, anuncioBody, { responseType: "text" });
+    return this.http.post(`${BASE_URL}/anuncio/${produto.empresa_cnpj}/${anuncio.plano}`, anuncioBody, { headers: new HttpHeaders().append("Authorization", `${token}`), responseType: "text" });
   }
 
   listaAnunciosPorEmpresa(cnpj: string) {

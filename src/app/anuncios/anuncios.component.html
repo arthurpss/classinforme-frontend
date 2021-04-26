@@ -1,57 +1,61 @@
-<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-    <h1 class="display-4">Planos de anúncio</h1>
-    <p class="lead">Trabalhamos com planos para diferentes áreas da tela de anúncio e diferentes períodos de
-        disponibilização do anúncio na plataforma. Para saber mais sobre cada plano, nos contate.
-    </p>
+<div *ngIf="!isLogado">
+    <h2>Não autorizado</h2>
 </div>
-<div id="planos-anuncios" class="card-deck mb-3 text-center">
-    <!-- TODO: Receber anuncios da service e apresentar em um laço de repetição -->
-    <div class="card mb-4 shadow-sm">
-        <div class="card-header">
-            <h4 class="my-0 font-weight-normal">Básico</h4>
-        </div>
-        <div class="card-body">
-            <h1 class="card-title pricing-card-title">R$ 30,00 <small class="text-muted">/ mês</small></h1>
-            <ul class="list-unstyled mt-3 mb-4">
-                <li>Posição X;</li>
-                <li>Contém descrição em texto e uma imagem;</li>
-                <li>Sem envio de email para potenciais clientes;</li>
-                <li>Suporte via email.</li>
-            </ul>
-            <button (click)="cadastrarAnuncio('basico')" type="button"
-                class="btn btn-lg btn-block btn-outline-success">Anuncie</button>
-        </div>
+<div *ngIf="isLogado">
+    <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+        <h1 class="display-4">Planos de anúncio</h1>
+        <p class="lead">Trabalhamos com planos para diferentes áreas da tela de anúncio e diferentes períodos de
+            disponibilização do anúncio na plataforma. Para saber mais sobre cada plano, nos contate.
+        </p>
     </div>
-    <div class="card mb-4 shadow-sm">
-        <div class="card-header">
-            <h4 class="my-0 font-weight-normal">Avançado</h4>
+    <div id="planos-anuncios" class="card-deck mb-3 text-center">
+        <div class="card mb-4 shadow-sm">
+            <div class="card-header">
+                <h4 class="my-0 font-weight-normal">Básico</h4>
+            </div>
+            <div class="card-body">
+                <h1 class="card-title pricing-card-title">R$ 30,00 <small class="text-muted">/ mês</small></h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                    <li>Posição X;</li>
+                    <li>Contém descrição em texto e uma imagem;</li>
+                    <li>Sem envio de email para potenciais clientes;</li>
+                    <li>Suporte via email.</li>
+                </ul>
+                <button (click)="cadastrarAnuncio('basico')" type="button"
+                    class="btn btn-lg btn-block btn-outline-success">Anuncie</button>
+            </div>
         </div>
-        <div class="card-body">
-            <h1 class="card-title pricing-card-title">R$ 50,00 <small class="text-muted">/ mês</small></h1>
-            <ul class="list-unstyled mt-3 mb-4">
-                <li>Posição Y + Banner(carrousel);</li>
-                <li>Contém descrição em texto e até 2 imagens;</li>
-                <li>Envio de email pra quantidade limitada de potenciais clientes;</li>
-                <li>Suporte via email.</li>
-            </ul>
-            <button (click)="cadastrarAnuncio('avancado')" type="button"
-                class="btn btn-lg btn-block btn-outline-success">Anuncie</button>
+        <div class="card mb-4 shadow-sm">
+            <div class="card-header">
+                <h4 class="my-0 font-weight-normal">Avançado</h4>
+            </div>
+            <div class="card-body">
+                <h1 class="card-title pricing-card-title">R$ 50,00 <small class="text-muted">/ mês</small></h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                    <li>Posição Y + Banner(carrousel);</li>
+                    <li>Contém descrição em texto e até 2 imagens;</li>
+                    <li>Envio de email pra quantidade limitada de potenciais clientes;</li>
+                    <li>Suporte via email.</li>
+                </ul>
+                <button (click)="cadastrarAnuncio('avancado')" type="button"
+                    class="btn btn-lg btn-block btn-outline-success">Anuncie</button>
+            </div>
         </div>
-    </div>
-    <div class="card mb-4 shadow-sm">
-        <div class="card-header">
-            <h4 class="my-0 font-weight-normal">Completo</h4>
-        </div>
-        <div class="card-body">
-            <h1 class="card-title pricing-card-title">R$ 90,00 <small class="text-muted">/ mês</small></h1>
-            <ul class="list-unstyled mt-3 mb-4">
-                <li>Posição Z + Banner com tempo extendido(carrousel);</li>
-                <li>Contém descrição em texto, 5 imagens e 1 vídeo;</li>
-                <li>Envio de email para todos os potenciais clientes;</li>
-                <li>Suporte prioritário via email.</li>
-            </ul>
-            <button (click)="cadastrarAnuncio('completo')" type="button"
-                class="btn btn-lg btn-block btn-outline-success">Anuncie</button>
+        <div class="card mb-4 shadow-sm">
+            <div class="card-header">
+                <h4 class="my-0 font-weight-normal">Completo</h4>
+            </div>
+            <div class="card-body">
+                <h1 class="card-title pricing-card-title">R$ 90,00 <small class="text-muted">/ mês</small></h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                    <li>Posição Z + Banner com tempo extendido(carrousel);</li>
+                    <li>Contém descrição em texto, 5 imagens e 1 vídeo;</li>
+                    <li>Envio de email para todos os potenciais clientes;</li>
+                    <li>Suporte prioritário via email.</li>
+                </ul>
+                <button (click)="cadastrarAnuncio('completo')" type="button"
+                    class="btn btn-lg btn-block btn-outline-success">Anuncie</button>
+            </div>
         </div>
     </div>
 </div>

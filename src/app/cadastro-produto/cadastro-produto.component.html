@@ -1,8 +1,12 @@
-<div class="container" style="padding-top: 70px;">
+<div *ngIf="!isLogado">
+    <h2>Não autorizado</h2>
+</div>
+
+<div *ngIf="isLogado" class="container" style="padding-top: 70px;">
     <div class="py-5 text-center">
         <h2>Cadastro de produto</h2>
         <p class="lead">Cadastre seu produto para anunciá-lo em nossa plataforma.</p>
-        <p class="lead"><b>*Adicione uma imagem ao seu produto após cadastrar as informações principais</b></p>
+        <p class="lead"><b>Adicione uma imagem ao seu produto após cadastrar as informações principais</b></p>
     </div>
     <form #form="ngForm" (submit)="cadastraProduto()">
         <label for="tipo-produto">Categoria do produto</label>

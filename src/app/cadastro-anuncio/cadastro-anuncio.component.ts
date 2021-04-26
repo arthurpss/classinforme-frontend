@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { Anuncio } from '../shared/interfaces/anuncio.interface';
 import { Produto } from '../shared/interfaces/produto.interface';
 import { AnunciosService } from '../shared/services/anuncios.service';
+import { JwtService } from '../shared/services/jwt.service';
 import { ProdutosService } from '../shared/services/produtos.service';
 
 @Component({
@@ -46,15 +47,25 @@ export class CadastroAnuncioComponent implements OnInit {
   }
 
   produtos: object;
+  isLogado: boolean;
 
-  constructor(private route: ActivatedRoute, private anuncioService: AnunciosService, private produtoService: ProdutosService, private router: Router) { }
+  constructor(private route: ActivatedRoute, private anuncioService: AnunciosService, private produtoService: ProdutosService, private router: Router, private jwtService: JwtService) { }
 
   ngOnInit(): void {
-    this.getPlano().subscribe(plano => this.anuncio.plano = plano);
-    this.getCnpj().subscribe(cnpj => this.produto.empresa_cnpj = cnpj);
-    this.produtoService.listaProdutosPorEmpresa(this.produto.empresa_cnpj ,"").then(produtos => { //TODO: Passar token nessa chamada
-      this.produtos = produtos;
+    this.getCnpj().subscribe(cnpj => {
+      this.produto.empresa_cnpj = cnpj
+      this.isLogado = this.jwtService.isLoggedIn(cnpj);
     });
+    if (this.isLogado) {
+      this.getPlano().subscribe(plano => this.anuncio.plano = plano);
+      this.jwtService.getRefreshToken().then(refreshToken => {
+        this.jwtService.getToken(refreshToken).subscribe(res => {
+          this.produtoService.listaProdutosPorEmpresa(this.produto.empresa_cnpj, res.token).then(produtos => {
+            this.produtos = produtos;
+          });
+        })
+      })
+    }
   }
 
   private getCnpj(): Observable<string> {
@@ -80,8 +91,12 @@ export class CadastroAnuncioComponent implements OnInit {
   }
 
   cadastraAnuncio(): void {
-    this.anuncioService.novoAnuncio(this.anuncio, this.produto)
-      .subscribe(this.observer);
+    this.jwtService.getRefreshToken().then(refreshToken => {
+      this.jwtService.getToken(refreshToken).subscribe(res => {
+        this.anuncioService.novoAnuncio(this.anuncio, this.produto, res.token)
+          .subscribe(this.observer);
+      })
+    })
   }
 
 }

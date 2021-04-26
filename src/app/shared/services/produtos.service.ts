@@ -16,8 +16,8 @@ export class ProdutosService {
   constructor(private http: HttpClient) {
   }
 
-  novoProduto(produto: Produto): Observable<any> {
-    return this.http.post(`${BASE_URL}/produto/${produto.empresa_cnpj}`, produto, { responseType: "text" });
+  novoProduto(produto: Produto, token: string): Observable<any> {
+    return this.http.post(`${BASE_URL}/produto/${produto.empresa_cnpj}`, produto, { headers: new HttpHeaders().append("Authorization", `${token}`), responseType: "text" });
   }
 
   listaProdutosPorEmpresa(cnpj: string, token: string): Promise<Produto[]> {
