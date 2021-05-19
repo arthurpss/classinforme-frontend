@@ -33,7 +33,6 @@ export class LoginEmpresaComponent implements OnInit {
 
   loginEmpresa(): void {
     this.jwtService.loginEmpresa(this.login).subscribe(res => {
-      console.log("Logou")
       localStorage.setItem('token', res.token);
       localStorage.setItem('refreshToken', res.refreshToken);
       localStorage.setItem('cnpj', res.cnpj);

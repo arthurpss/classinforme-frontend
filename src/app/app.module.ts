@@ -23,6 +23,10 @@ import { AnunciosComponent } from './anuncios/anuncios.component';
 import { ProdutosEmpresaComponent } from './produtos-empresa/produtos-empresa.component';
 import { ProdutosService } from './shared/services/produtos.service';
 import { CadastroAnuncioComponent } from './cadastro-anuncio/cadastro-anuncio.component';
+import { AdminComponent } from './admin/admin.component';
+import { AdminEmpresasComponent } from './admin-empresas/admin-empresas.component';
+import { AdminPropostasComponent } from './admin-propostas/admin-propostas.component';
+import { AdminAnunciosComponent } from './admin-anuncios/admin-anuncios.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +43,11 @@ import { CadastroAnuncioComponent } from './cadastro-anuncio/cadastro-anuncio.co
     DashboardEmpresaComponent,
     AnunciosComponent,
     ProdutosEmpresaComponent,
-    CadastroAnuncioComponent
+    CadastroAnuncioComponent,
+    AdminComponent,
+    AdminEmpresasComponent,
+    AdminPropostasComponent,
+    AdminAnunciosComponent
   ],
   imports: [
     BrowserModule,

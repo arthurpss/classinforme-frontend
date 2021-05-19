@@ -21,4 +21,8 @@ export class EmpresaService {
   getEmpresaPorCnpj(cnpj: string) {
     return this.http.get(`${BASE_URL}/empresa/${cnpj}`);
   }
+
+  getEmpresas(): Promise<any> {
+    return this.http.get(`${BASE_URL}/empresas`).toPromise();
+  }
 }

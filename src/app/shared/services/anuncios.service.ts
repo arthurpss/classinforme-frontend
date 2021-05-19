@@ -26,8 +26,8 @@ export class AnunciosService {
     return this.http.get(`${BASE_URL}/anuncios/${cnpj}`);
   }
 
-  listaAnuncios() {
-    return this.http.get(`${BASE_URL}/anuncios`);
+  getAnuncios(): Promise<any> {
+    return this.http.get(`${BASE_URL}/anuncios`).toPromise();
   }
 
   listaAnunciosAtivos(): Observable<Anuncio[]> {
@@ -35,6 +35,6 @@ export class AnunciosService {
   }
 
   ativaDesativaAnuncio(anuncio_id: string, ativar: boolean) {
-    return ativar ? this.http.patch(`${BASE_URL}/anuncio/${anuncio_id}`, 1) : this.http.patch(`${BASE_URL}/${anuncio_id}`, 0);
+    return this.http.patch(`${BASE_URL}/anuncio/${anuncio_id}`, {"ativar": ativar});
   }
 }

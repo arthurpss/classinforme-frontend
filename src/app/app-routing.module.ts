@@ -7,6 +7,10 @@ import { LoginEmpresaComponent } from './login-empresa/login-empresa.component';
 import { PrimeiroContatoComponent } from './primeiro-contato/primeiro-contato.component';
 import { CadastroProdutoComponent } from './cadastro-produto/cadastro-produto.component';
 import { CadastroAnuncioComponent } from './cadastro-anuncio/cadastro-anuncio.component';
+import { AdminComponent } from './admin/admin.component';
+import { AdminEmpresasComponent } from './admin-empresas/admin-empresas.component';
+import { AdminPropostasComponent } from './admin-propostas/admin-propostas.component';
+import { AdminAnunciosComponent } from './admin-anuncios/admin-anuncios.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -16,7 +20,20 @@ const routes: Routes = [
   { path: 'login', component: LoginEmpresaComponent },
   { path: 'dashboard-empresa/:cnpj', component: DashboardEmpresaComponent },
   { path: 'cadastro-produto/:cnpj', component: CadastroProdutoComponent },
-  { path: 'cadastro-anuncio/:cnpj/:plano', component: CadastroAnuncioComponent }
+  { path: 'cadastro-anuncio/:cnpj/:plano', component: CadastroAnuncioComponent },
+  {
+    path: 'admin', component: AdminComponent, children: [
+      {
+        path: 'admin-empresas', component: AdminEmpresasComponent
+      },
+      {
+        path: 'admin-propostas', component: AdminPropostasComponent
+      },
+      {
+        path: 'admin-anuncios', component: AdminAnunciosComponent
+      }
+    ]
+  }
 ];
 
 @NgModule({
