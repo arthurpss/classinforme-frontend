@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { CatalogoService } from '../shared/services/catalogo.service';
-// import { Observable } from 'rxjs';
 import { PrimeiroContato } from '../shared/interfaces/primeiro-contato.interface';
 import { EmailService } from '../shared/services/email.service';
 
@@ -26,6 +25,7 @@ export class PrimeiroContatoComponent implements OnInit {
 
   contato: PrimeiroContato = {
     razao_social: "",
+    cnpj: "",
     email: "",
     tipo_produto: "Adaptador",
     campo_livre: ""
