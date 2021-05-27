@@ -7,11 +7,6 @@ import { Component, Input, OnInit, Output } from '@angular/core';
 })
 export class AdminComponent implements OnInit {
 
-  @Input() menuSelecionado: string;
-
-  // Por padrão, começa como 'empresas'
-  @Output() menu: string = "empresas";
-
   constructor() { }
 
   ngOnInit(): void {

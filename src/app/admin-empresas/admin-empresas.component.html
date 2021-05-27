@@ -4,18 +4,20 @@
         <table class="table table-striped table-sm">
             <thead>
                 <tr>
-                    <th>Id</th>
-                    <th>CNPJ</th>
                     <th>Razão social</th>
+                    <th>CNPJ</th>
                     <th>Filiado</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let empresa of empresas">
-                    <td>{{empresa.empresa_id}}</td>
-                    <td>{{empresa.cnpj}}</td>
                     <td>{{empresa.razao_social}}</td>
-                    <td>{{empresa.filiado}}</td>
+                    <td>{{empresa.cnpj}}</td>
+                    <td *ngIf="empresa.filiado">Sim</td>
+                    <td *ngIf="!empresa.filiado">Não</td>
+                    <td><button (click)="verEmpresa(empresa.cnpj)" type="button"
+                        class="btn btn-block btn-outline-success">Ver empresa</button></td>
                 </tr>
             </tbody>
         </table>

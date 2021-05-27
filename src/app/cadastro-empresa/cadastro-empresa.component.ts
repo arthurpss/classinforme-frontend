@@ -52,7 +52,7 @@ export class CadastroEmpresaComponent implements OnInit {
     }
   }
 
-  cadsatraEmpresa(): void {
+  cadastraEmpresa(): void {
     this.empresaService.cadastraEmpresa(this.empresa)
       .subscribe(this.observer);
   }

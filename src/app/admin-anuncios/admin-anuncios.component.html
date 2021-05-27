@@ -4,19 +4,24 @@
         <table class="table table-striped table-sm">
             <thead>
                 <tr>
-                    <th>Id</th>
-                    <th>Plano</th>
+                    <th>Empresa</th>
+                    <th>Produto</th>
+                    <th>Plano do anúncio</th>
                     <th>Ativo</th>
                     <th>Ação</th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let anuncio of anuncios">
-                    <td>{{anuncio.anuncio_id}}</td>
-                    <td>{{anuncio.plano}}</td>
-                    <td>{{anuncio.ativo}}</td>
-                    <td *ngIf="!anuncio.ativo"><button (click)="ativarAnuncio(anuncio.anuncio_id)">Ativar</button></td>
-                    <td *ngIf="anuncio.ativo"><button (click)="desativarAnuncio(anuncio.anuncio_id)">Desativar</button></td>
+                <tr *ngFor="let detalhe of anunciosDetalhes">
+                    <td>{{detalhe.empresa.razao_social}}</td>
+                    <td>{{detalhe.produto.titulo}}</td>
+                    <td>{{detalhe.anuncio.plano}}</td>
+                    <td *ngIf="detalhe.anuncio.ativo">Sim</td>
+                    <td *ngIf="!detalhe.anuncio.ativo">Não</td>
+                    <td *ngIf="!detalhe.anuncio.ativo"><button
+                            (click)="ativarAnuncio(detalhe.anuncio.anuncio_id)">Ativar</button></td>
+                    <td *ngIf="detalhe.anuncio.ativo"><button
+                            (click)="desativarAnuncio(detalhe.anuncio.anuncio_id)">Desativar</button></td>
                 </tr>
             </tbody>
         </table>

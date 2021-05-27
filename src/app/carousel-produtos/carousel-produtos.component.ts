@@ -21,7 +21,7 @@ export class CarouselProdutosComponent implements OnInit {
       this.anuncios = anuncios
       this.anuncios.forEach(anuncio => {
         this.produtosService.listaProdutoPorId(anuncio.produto_id)
-          .subscribe(produto => {
+          .then(produto => {
             this.produtosAnunciados.push(produto)
           })
       })

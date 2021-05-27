@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Empresa } from '../shared/interfaces/empresa.interface';
 import { EmpresaService } from '../shared/services/empresa.service';
 
@@ -11,13 +12,15 @@ export class AdminEmpresasComponent implements OnInit {
 
   empresas: Empresa[];
 
-  constructor(private empresaService: EmpresaService) { }
+  constructor(private empresaService: EmpresaService, private router: Router) { }
 
   ngOnInit(): void {
     this.empresaService.getEmpresas().then(empresas => {
-      console.log(empresas)
-      this.empresas = empresas});
-    console.log(this.empresas)
+      this.empresas = empresas
+    });
   }
 
+  verEmpresa(cnpj: string): void {
+    this.router.navigateByUrl(`admin/empresa/${cnpj}`);
+  }
 }

@@ -3,7 +3,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Produto } from '../interfaces/produto.interface';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import { JwtService } from './jwt.service';
 
 const BASE_URL = environment.BASE_URL;
 
@@ -24,7 +23,7 @@ export class ProdutosService {
     return this.http.get<Produto[]>(`${BASE_URL}/produtos/${cnpj}`, { headers: new HttpHeaders().append("Authorization", `${token}`) }).toPromise();
   }
 
-  listaProdutoPorId(id: string): Observable<Produto> {
-    return this.http.get<Produto>(`${BASE_URL}/produto/${id}`);
+  listaProdutoPorId(id: string): Promise<Produto> {
+    return this.http.get<Produto>(`${BASE_URL}/produto/${id}`).toPromise();
   }
 }

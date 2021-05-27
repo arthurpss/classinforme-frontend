@@ -1,0 +1,100 @@
+<main role="main" *ngIf="!isAdmin" style="padding-top: 90px;">
+    <h3>Não autorizado</h3>
+</main>
+<main *ngIf="isAdmin" role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4" style="padding-top: 90px;">
+
+    <!-- Dados da empresa -->
+    <section class="text-center">
+        <div class="container">
+            <h1>Dados</h1>
+            <p class="lead text-muted">Os dados podem ser visualizados e alterados</p>
+        </div>
+    </section>
+    <form #form="ngForm" (submit)="atualizaEmpresa()">
+        <label for="cod_sinfor">Código SINFOR</label>
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" id="cod_sinfor" placeholder="Código sinfor" name="cod_sinfor"
+                [(ngModel)]="empresa.cod_sinfor">
+        </div>
+        <label for="cnpj">CNPJ</label>
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" id="cnpj" placeholder="CNPJ" name="cnpj" [(ngModel)]="empresa.cnpj"
+                required>
+        </div>
+        <label for="razao_social">Razão social</label>
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" id="razao_social" placeholder="Razão Social" name="razao_social"
+                [(ngModel)]="empresa.razao_social" required>
+        </div>
+        <label for="cep">CEP</label>
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" id="cep" placeholder="CEP" name="cep" [(ngModel)]="empresa.cep"
+                required>
+        </div>
+        <label for="cidade">Cidade</label>
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" id="cidade" placeholder="Cidade" name="cidade"
+                [(ngModel)]="empresa.cidade" required>
+        </div>
+        <label for="bairro">Bairro</label>
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" id="bairro" placeholder="Bairro" name="bairro"
+                [(ngModel)]="empresa.bairro" required>
+        </div>
+        <label for="endereco">Endereço</label>
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" id="endereco" placeholder="Endereço" name="endereco"
+                [(ngModel)]="empresa.endereco" required>
+        </div>
+        <div class="input-group mb-3 form-check">
+            <input class="form-check-input" type="checkbox" value="" id="filiado" name="filiado"
+                [(ngModel)]="empresa.filiado">
+            <label class="form-check-label" for="filiado">
+                Filiado ao sinfor?
+            </label>
+        </div>
+        <input [disabled]="form.invalid || atualizada" class="btn-lg btn-outline-success" type="submit"
+            value="Atualizar">
+        <div *ngIf="atualizada" class="alert alert-success" role="alert" style="padding-top: 40px;">
+            Dados atualizados
+        </div>
+    </form>
+
+    <!-- Produtos -->
+    <section class="text-center">
+        <div class="container">
+            <h1>Produtos cadastrados</h1>
+            <p class="lead text-muted">Os produtos cadastrados pelas empresas também podem ser visualizados e alterados
+            </p>
+        </div>
+    </section>
+    <div class="album" *ngIf="produtos.length > 0">
+        <div class="container">
+            <div class="row">
+                <div *ngFor="let produto of produtos" class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <img *ngIf="produto.thumbnail" width="100%" height="225" focusable="false" role="img"
+                            src={{produto.thumbnail}}>
+                        <img *ngIf="!produto.thumbnail" width="100%" height="225" focusable="false" role="img"
+                            src="../../assets/images/sem-imagem.jpg">
+                        <div class="card-body">
+                            <p class="card-text">{{produto.titulo}}</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-outline-success">Detalhes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="produtos.length === 0">
+        <div class="container">
+            <div class="row">
+                <h2>* Esta empresa não tem produtos cadastrados</h2>
+            </div>
+        </div>
+    </div>
+</main>

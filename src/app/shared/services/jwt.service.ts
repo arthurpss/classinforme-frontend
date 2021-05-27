@@ -14,8 +14,8 @@ export class JwtService {
 
   constructor(private http: HttpClient) { }
 
-  loginEmpresa(login: Login): Observable<any> {
-    return this.http.post(`${BASE_URL}/login-empresa`, login);
+  login(login: Login): Observable<any> {
+    return this.http.post(`${BASE_URL}/login`, login);
   }
 
   isLoggedIn(cnpj: string): boolean {
@@ -27,7 +27,10 @@ export class JwtService {
   }
 
   getToken(refreshToken: string): Observable<any> {
-    return this.http.post(`${BASE_URL}/token-empresa`, {refreshToken});
+    return this.http.post(`${BASE_URL}/token`, {refreshToken});
   }
 
+  isAdmin(): boolean {
+    return localStorage.getItem('cnpj') === '1';
+  }
 }

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Anuncio } from '../shared/interfaces/anuncio.interface';
+import { AnuncioDetalhes } from '../shared/interfaces/detalhes-anuncio.interface';
 import { AnunciosService } from '../shared/services/anuncios.service';
+import { EmpresaService } from '../shared/services/empresa.service';
+import { ProdutosService } from '../shared/services/produtos.service';
 
 @Component({
   selector: 'app-admin-anuncios',
@@ -9,16 +11,35 @@ import { AnunciosService } from '../shared/services/anuncios.service';
 })
 export class AdminAnunciosComponent implements OnInit {
 
-  anuncios: Anuncio[];
+  anunciosDetalhes: AnuncioDetalhes[] = [];
 
-  constructor(private anuncioService: AnunciosService) { }
+  constructor(private anuncioService: AnunciosService, private produtoService: ProdutosService, private empresaService: EmpresaService) { }
 
   ngOnInit(): void {
-    this.anuncioService.getAnuncios().then(anuncios => this.anuncios = anuncios);
+    this.anuncioService.getAnuncios()
+      .then(anuncios => {
+        anuncios.forEach(anuncio => {
+          this.produtoService.listaProdutoPorId(anuncio.produto_id)
+            .then(produto => {
+              this.empresaService.getEmpresaPorCnpj(produto.empresa_cnpj)
+                .then(empresa => {
+                  this.anunciosDetalhes.push({
+                    anuncio,
+                    produto,
+                    empresa
+                  });
+                })
+            })
+        })
+      });
   }
 
   private atualizaAnuncios(): void {
-    this.anuncioService.getAnuncios().then(anuncios => this.anuncios = anuncios);
+    this.anuncioService.getAnuncios().then(anuncios => {
+      anuncios.forEach((anuncio, index) => {
+        this.anunciosDetalhes[index].anuncio = anuncio
+      });
+    });
   }
 
   ativarAnuncio(anuncio_id: string): void {

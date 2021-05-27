@@ -27,6 +27,9 @@ import { AdminComponent } from './admin/admin.component';
 import { AdminEmpresasComponent } from './admin-empresas/admin-empresas.component';
 import { AdminPropostasComponent } from './admin-propostas/admin-propostas.component';
 import { AdminAnunciosComponent } from './admin-anuncios/admin-anuncios.component';
+import { AdminEmpresaComponent } from './admin-empresa/admin-empresa.component';
+import { LoginAdminComponent } from './login-admin/login-admin.component';
+import { DetalhesProdutoComponent } from './detalhes-produto/detalhes-produto.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +50,10 @@ import { AdminAnunciosComponent } from './admin-anuncios/admin-anuncios.componen
     AdminComponent,
     AdminEmpresasComponent,
     AdminPropostasComponent,
-    AdminAnunciosComponent
+    AdminAnunciosComponent,
+    AdminEmpresaComponent,
+    LoginAdminComponent,
+    DetalhesProdutoComponent
   ],
   imports: [
     BrowserModule,

@@ -11,6 +11,8 @@ import { AdminComponent } from './admin/admin.component';
 import { AdminEmpresasComponent } from './admin-empresas/admin-empresas.component';
 import { AdminPropostasComponent } from './admin-propostas/admin-propostas.component';
 import { AdminAnunciosComponent } from './admin-anuncios/admin-anuncios.component';
+import { AdminEmpresaComponent } from './admin-empresa/admin-empresa.component';
+import { LoginAdminComponent } from './login-admin/login-admin.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -24,15 +26,21 @@ const routes: Routes = [
   {
     path: 'admin', component: AdminComponent, children: [
       {
-        path: 'admin-empresas', component: AdminEmpresasComponent
+        path: 'empresas', component: AdminEmpresasComponent
       },
       {
-        path: 'admin-propostas', component: AdminPropostasComponent
+        path: 'propostas', component: AdminPropostasComponent
       },
       {
-        path: 'admin-anuncios', component: AdminAnunciosComponent
+        path: 'anuncios', component: AdminAnunciosComponent
+      },
+      {
+        path: 'empresa/:cnpj', component: AdminEmpresaComponent
       }
     ]
+  },
+  {
+    path: 'login-admin', component: LoginAdminComponent
   }
 ];
 

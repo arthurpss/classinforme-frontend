@@ -18,11 +18,15 @@ export class EmpresaService {
     return this.http.post(`${BASE_URL}/empresa`, empresa, { responseType: "text" });
   }
 
-  getEmpresaPorCnpj(cnpj: string) {
-    return this.http.get(`${BASE_URL}/empresa/${cnpj}`);
+  getEmpresaPorCnpj(cnpj: string): Promise<any> {
+    return this.http.get(`${BASE_URL}/empresa/${cnpj}`).toPromise();
   }
 
   getEmpresas(): Promise<any> {
     return this.http.get(`${BASE_URL}/empresas`).toPromise();
+  }
+
+  atualizaEmpresa(cnpj: string, empresa: Empresa): Observable<any> {
+    return this.http.patch(`${BASE_URL}/empresa/${cnpj}`, empresa, { responseType: "text" });
   }
 }
