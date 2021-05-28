@@ -7,6 +7,7 @@
                     <th>Empresa</th>
                     <th>Produto</th>
                     <th>Plano do anúncio</th>
+                    <th>Status</th>
                     <th>Ativo</th>
                     <th>Ação</th>
                 </tr>
@@ -16,6 +17,7 @@
                     <td>{{detalhe.empresa.razao_social}}</td>
                     <td>{{detalhe.produto.titulo}}</td>
                     <td>{{detalhe.anuncio.plano}}</td>
+                    <td>{{detalhe.anuncio.status}}</td>
                     <td *ngIf="detalhe.anuncio.ativo">Sim</td>
                     <td *ngIf="!detalhe.anuncio.ativo">Não</td>
                     <td *ngIf="!detalhe.anuncio.ativo"><button

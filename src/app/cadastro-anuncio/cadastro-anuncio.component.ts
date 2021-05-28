@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { Anuncio } from '../shared/interfaces/anuncio.interface';
 import { Produto } from '../shared/interfaces/produto.interface';
 import { AnunciosService } from '../shared/services/anuncios.service';
+import { EmailService } from '../shared/services/email.service';
 import { JwtService } from '../shared/services/jwt.service';
 import { ProdutosService } from '../shared/services/produtos.service';
 
@@ -49,7 +50,9 @@ export class CadastroAnuncioComponent implements OnInit {
   produtos: object;
   isLogado: boolean;
 
-  constructor(private route: ActivatedRoute, private anuncioService: AnunciosService, private produtoService: ProdutosService, private router: Router, private jwtService: JwtService) { }
+  constructor(private route: ActivatedRoute, private anuncioService: AnunciosService,
+    private produtoService: ProdutosService, private router: Router,
+    private jwtService: JwtService, private emailService: EmailService) { }
 
   ngOnInit(): void {
     this.getCnpj().subscribe(cnpj => {
@@ -94,9 +97,20 @@ export class CadastroAnuncioComponent implements OnInit {
     this.jwtService.getRefreshToken().then(refreshToken => {
       this.jwtService.getToken(refreshToken).subscribe(res => {
         this.anuncioService.novoAnuncio(this.anuncio, this.produto, res.token)
-          .subscribe(this.observer);
+          .then(() => {
+            this.emailService.emailAnuncio(this.produto.empresa_cnpj, this.anuncio.email, this.anuncio.plano)
+              .then(() => {
+                this.mostraMensagem(false);
+                this.router.navigateByUrl(`dashboard-empresa/${this.produto.empresa_cnpj}`)
+              }).catch(error => {
+                console.log("Erro no envio de email: ", error);
+                this.mostraMensagem(true);
+              })
+          }).catch(error => {
+            console.log("Erro no cadastro: ", error);
+            this.mostraMensagem(true);
+          });
       })
     })
   }
-
 }

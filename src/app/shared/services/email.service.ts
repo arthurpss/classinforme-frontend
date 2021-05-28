@@ -16,4 +16,10 @@ export class EmailService {
   enviaEmail(contato: PrimeiroContato) {
     return this.http.post(`${BASE_URL}/primeiro-contato/email`, contato, { responseType: 'text' })
   }
+
+  emailAnuncio(cnpj: string, email: string, plano: string): Promise<any> {
+    return this.http.post(`${BASE_URL}/anuncio/email`, {
+      cnpj, email, plano
+    }, { responseType: 'text' }).toPromise();
+  }
 }

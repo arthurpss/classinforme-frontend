@@ -14,12 +14,16 @@ export class AnunciosService {
 
   constructor(private http: HttpClient) { }
 
-  novoAnuncio(anuncio: Anuncio, produto: Produto, token: string): Observable<any> {
+  novoAnuncio(anuncio: Anuncio, produto: Produto, token: string): Promise<any> {
     const anuncioBody = {
       produto_id: anuncio.produto_id,
       email: anuncio.email
     }
-    return this.http.post(`${BASE_URL}/anuncio/${produto.empresa_cnpj}/${anuncio.plano}`, anuncioBody, { headers: new HttpHeaders().append("Authorization", `${token}`), responseType: "text" });
+    return this.http.post(`${BASE_URL}/anuncio/${produto.empresa_cnpj}/${anuncio.plano}`,
+      anuncioBody, {
+        headers: new HttpHeaders().append("Authorization", `${token}`),
+      responseType: "text"
+    }).toPromise();
   }
 
   listaAnunciosPorEmpresa(cnpj: string) {
@@ -35,6 +39,6 @@ export class AnunciosService {
   }
 
   ativaDesativaAnuncio(anuncio_id: string, ativar: boolean) {
-    return this.http.patch(`${BASE_URL}/anuncio/${anuncio_id}`, {"ativar": ativar});
+    return this.http.patch(`${BASE_URL}/anuncio/${anuncio_id}`, { "ativar": ativar });
   }
 }
