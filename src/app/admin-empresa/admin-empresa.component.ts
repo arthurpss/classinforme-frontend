@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Empresa } from '../shared/interfaces/empresa.interface';
@@ -24,7 +24,7 @@ export class AdminEmpresaComponent implements OnInit {
   empresa: Empresa;
   atualizada: boolean;
 
-  constructor(private empresaService: EmpresaService, private produtoService: ProdutosService, private route: ActivatedRoute, private imagemService: ImagemService, private jwtService: JwtService) { }
+  constructor(private empresaService: EmpresaService, private produtoService: ProdutosService, private route: ActivatedRoute, private imagemService: ImagemService, private jwtService: JwtService, private router: Router) { }
 
   ngOnInit(): void {
     this.getCnpj().subscribe(cnpj => this.cnpj = cnpj);
@@ -82,5 +82,9 @@ export class AdminEmpresaComponent implements OnInit {
     this.empresaService.atualizaEmpresa(this.cnpj, this.empresa).subscribe(() => {
       this.atualizada = true;
     });
+  }
+
+  verDetalhes(id): void {
+    this.router.navigateByUrl(`produto/${id}`);
   }
 }

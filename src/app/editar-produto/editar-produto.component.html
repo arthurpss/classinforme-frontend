@@ -1,0 +1,54 @@
+<div *ngIf="!isLogado" style="padding-top: 90px;">
+    <h2>Não autorizado</h2>
+</div>
+
+<div *ngIf="isLogado" class="container" style="padding-top: 90px;">
+    <div class="py-5 text-center">
+        <h2>Edição de produto</h2>
+        <p class="lead">Atualize a forma como seu produto será apresentado em nossa plataforma.</p>
+        <p class="lead"><b>Adicione imagens ao seu produto após cadastrar as informações principais</b></p>
+    </div>
+    <form #form="ngForm" (submit)="editaProduto()">
+        <label for="tipo-produto">Categoria do produto</label>
+        <div class="input-group mb-3">
+            <select class="form-control" id="tipo-produto-select" name="categoria" [(ngModel)]="produto.categoria"
+                required>
+                <option *ngFor="let categoria of catalogo">{{categoria}}</option>
+            </select>
+        </div>
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" id="titulo" placeholder="Título do produto" name="titulo"
+                [(ngModel)]="produto.titulo" required>
+        </div>
+        <label for="descricao">Descrição do produto</label>
+        <div class="input-group mb-3">
+            <textarea class="form-control" id="descricao" name="descricao" rows="5" [(ngModel)]="produto.descricao"
+                required></textarea>
+        </div>
+        <div class="input-group mb-5">
+            <input [disabled]="form.invalid || produtoAtualizado" class="btn-lg btn-outline-success" type="submit"
+                value="Atualizar">
+            <span *ngIf="produtoAtualizado" class="alert alert-success" role="alert" style="margin-left: 40px;">
+                {{mensagem}}
+            </span>
+        </div>
+    </form>
+    <div class="py-5 text-center">
+        <h2>Adicione uma imagem ao seu produto</h2>
+        <p class="lead">A imagem será apresentada na tela de divulgação</p>
+    </div>
+    <form #form="ngForm" (submit)="cadastraImagem()" enctype="multipart/form-data">
+        <div class="input-group mb-3 custom-file">
+            <label class="custom-file-label" for="imagem">Imagem</label>
+            <input type="file" multiple class="custom-file-input" id="imagem" (change)="onFileSelected($event)">
+        </div>
+        <div class="input-group mb-5">
+            <input [disabled]="form.invalid || imagemAdicionada || !arquivoSelecionado"
+                class="btn-lg btn-outline-success" type="submit" value="Adicionar">
+            <span *ngIf="imagemAdicionada" class="alert alert-success" role="alert" style="margin-left: 40px;">
+                Imagem adicionada
+            </span>
+        </div>
+    </form>
+    <button class="btn btn-success" (click)="concluiEdicao()" style="margin-bottom: 30px;">Concluir</button>
+</div>

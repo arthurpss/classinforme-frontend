@@ -1,4 +1,4 @@
-<main role="main" *ngIf="!isAdmin" style="padding-top: 90px;">
+<main role="main" *ngIf="!isAdmin" style="padding-top: 90px;" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
     <h3>Não autorizado</h3>
 </main>
 <main *ngIf="isAdmin" role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4" style="padding-top: 90px;">
@@ -81,7 +81,7 @@
                             <p class="card-text">{{produto.titulo}}</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-success">Detalhes</button>
+                                    <button type="button" class="btn btn-sm btn-outline-success" (click)="verDetalhes(produto.produto_id)">Detalhes</button>
                                 </div>
                             </div>
                         </div>

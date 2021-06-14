@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AnuncioDetalhes } from '../shared/interfaces/detalhes-anuncio.interface';
 import { AnunciosService } from '../shared/services/anuncios.service';
 import { EmpresaService } from '../shared/services/empresa.service';
+import { JwtService } from '../shared/services/jwt.service';
 import { ProdutosService } from '../shared/services/produtos.service';
 
 @Component({
@@ -12,10 +13,12 @@ import { ProdutosService } from '../shared/services/produtos.service';
 export class AdminAnunciosComponent implements OnInit {
 
   anunciosDetalhes: AnuncioDetalhes[] = [];
+  isAdmin: boolean;
 
-  constructor(private anuncioService: AnunciosService, private produtoService: ProdutosService, private empresaService: EmpresaService) { }
+  constructor(private anuncioService: AnunciosService, private produtoService: ProdutosService, private empresaService: EmpresaService, private jwtService: JwtService) { }
 
   ngOnInit(): void {
+    this.isAdmin = this.jwtService.isAdmin();
     this.anuncioService.getAnuncios()
       .then(anuncios => {
         anuncios.forEach(anuncio => {

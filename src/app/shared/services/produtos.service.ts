@@ -26,4 +26,8 @@ export class ProdutosService {
   listaProdutoPorId(id: string): Promise<Produto> {
     return this.http.get<Produto>(`${BASE_URL}/produto/${id}`).toPromise();
   }
+
+  atualizaProduto(id: string, produto: Produto, token: string): Observable<any> {
+    return this.http.patch(`${BASE_URL}/produto/${id}`, produto, { headers: new HttpHeaders().append("Authorization", `${token}`), responseType: "text" });
+  }
 }

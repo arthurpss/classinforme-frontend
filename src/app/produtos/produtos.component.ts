@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Anuncio } from '../shared/interfaces/anuncio.interface';
 import { Imagem } from '../shared/interfaces/imagem.interface';
 import { Produto } from '../shared/interfaces/produto.interface';
 import { AnunciosService } from '../shared/services/anuncios.service';
+import { CatalogoService } from '../shared/services/catalogo.service';
 import { ImagemService } from '../shared/services/imagem.service';
 import { ProdutosService } from '../shared/services/produtos.service';
 
@@ -11,14 +12,16 @@ import { ProdutosService } from '../shared/services/produtos.service';
   templateUrl: './produtos.component.html',
   styleUrls: ['./produtos.component.css']
 })
+
 export class ProdutosComponent implements OnInit {
+  @Input() filtro: String;
 
   anuncios: Anuncio[];
   produtosAnunciados: Produto[] = [];
   imagens: Imagem[] = [];
+  produtosFiltrados: Produto[];
 
-  constructor(private anuncioService: AnunciosService, private produtosService: ProdutosService, private imagemService: ImagemService) { }
-
+  constructor(private anuncioService: AnunciosService, private produtosService: ProdutosService, private imagemService: ImagemService, private catalogoService: CatalogoService) { }
 
   ngOnInit(): void {
     this.anuncioService.listaAnunciosAtivos().subscribe(anuncios => {
@@ -31,6 +34,12 @@ export class ProdutosComponent implements OnInit {
           })
       })
     })
+  }
+
+  ngOnChanges(): void {
+    this.filtro === "0" ?
+      this.produtosFiltrados = this.produtosAnunciados :
+      this.produtosFiltrados = this.produtosAnunciados.filter(produto => produto.categoria === this.filtro)
   }
 
   createImageFromBlob(produto: Produto, image: Blob): void {

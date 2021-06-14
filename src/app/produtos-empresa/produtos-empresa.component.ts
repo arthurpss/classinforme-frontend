@@ -49,6 +49,10 @@ export class ProdutosEmpresaComponent implements OnInit {
     this.router.navigateByUrl(`/cadastro-produto/${this.cnpj}`);
   }
 
+  editarProduto(id: string): void {
+    this.router.navigateByUrl(`/editar-produto/${id}`)
+  }
+
   private getImagemByProdutoId(produto_id: string) {
     return this.imagemService.getImagensByProdutoId(produto_id);
   }

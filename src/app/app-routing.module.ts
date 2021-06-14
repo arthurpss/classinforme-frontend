@@ -13,6 +13,8 @@ import { AdminPropostasComponent } from './admin-propostas/admin-propostas.compo
 import { AdminAnunciosComponent } from './admin-anuncios/admin-anuncios.component';
 import { AdminEmpresaComponent } from './admin-empresa/admin-empresa.component';
 import { LoginAdminComponent } from './login-admin/login-admin.component';
+import { DetalhesProdutoComponent } from './detalhes-produto/detalhes-produto.component';
+import { EditarProdutoComponent } from './editar-produto/editar-produto.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -41,7 +43,9 @@ const routes: Routes = [
   },
   {
     path: 'login-admin', component: LoginAdminComponent
-  }
+  },
+  { path: 'produto/:id', component: DetalhesProdutoComponent },
+  { path: 'editar-produto/:id', component: EditarProdutoComponent }
 ];
 
 @NgModule({

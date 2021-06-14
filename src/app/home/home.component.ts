@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CatalogoService } from '../shared/services/catalogo.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  tipoSelecionado: String = "0";
+  tipos: object;
+
+  constructor(private catalogoService: CatalogoService) { }
 
   ngOnInit(): void {
+    this.catalogoService.getCatalogo()
+    .subscribe(catalogo => this.tipos = catalogo);
   }
 
+  selecionaTipo(tipo: String) {
+    this.tipoSelecionado = tipo;
+  }
+
+  limpaFiltros() {
+    this.tipoSelecionado = "0";
+  }
 }
