@@ -1,5 +1,5 @@
 <div class="container" style="padding-top: 70px;">
-    <div class="py-5 text-center">
+    <div class="py-5 text-center" style="margin-bottom: -50px;">
         <img class="mb-4" src="../../assets/images/classinforme-logo.png" alt="" width="72" height="72">
         <h2>Login</h2>
         <p class="lead">Faça login para ter acesso aos seus anúncios ou adicionar novos anúncios.</p>
@@ -13,6 +13,9 @@
             <input type="password" class="form-control" id="senha" placeholder="Senha" name="senha"
                 [(ngModel)]="login.senha">
         </div>
-        <input [disabled]="form.invalid" type="submit" class="btn-md btn-block btn-login btn-outline-success">
+        <input [disabled]="form.invalid" type="submit" class="btn-md btn-block btn-login btn-outline-success"
+            value="Entrar">
+        <p class="lead" style="margin-top: 30px;">Ainda não se cadastrou?</p>
+        <button class="btn-md btn-block btn-login" (click)="cadastrar()">Cadastre-se</button>
     </form>
 </div>

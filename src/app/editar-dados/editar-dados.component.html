@@ -1,8 +1,7 @@
-<main role="main" *ngIf="!isAdmin" style="padding-top: 90px;" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+<main role="main" *ngIf="!isLogado" style="padding-top: 90px;" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
     <h3>Não autorizado</h3>
 </main>
-<main *ngIf="isAdmin" role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4" style="padding-top: 90px;">
-
+<main *ngIf="isLogado" role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4" style="padding-top: 90px;">
     <!-- Dados da empresa -->
     <section class="text-center">
         <div class="container">
@@ -69,42 +68,4 @@
             Dados atualizados
         </div>
     </form>
-
-    <!-- Produtos -->
-    <section class="text-center">
-        <div class="container">
-            <h1>Produtos cadastrados</h1>
-            <p class="lead text-muted">Os produtos cadastrados pelas empresas também podem ser visualizados e alterados
-            </p>
-        </div>
-    </section>
-    <div class="album" *ngIf="produtos.length > 0">
-        <div class="container">
-            <div class="row">
-                <div *ngFor="let produto of produtos" class="col-md-4">
-                    <div class="card mb-4 shadow-sm">
-                        <img *ngIf="produto.thumbnail" width="100%" height="225" focusable="false" role="img"
-                            src={{produto.thumbnail}}>
-                        <img *ngIf="!produto.thumbnail" width="100%" height="225" focusable="false" role="img"
-                            src="../../assets/images/sem-imagem.jpg">
-                        <div class="card-body">
-                            <p class="card-text">{{produto.titulo}}</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-success" (click)="verDetalhes(produto.produto_id)">Detalhes</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div *ngIf="produtos.length === 0">
-        <div class="container">
-            <div class="row">
-                <h2>* Esta empresa não tem produtos cadastrados</h2>
-            </div>
-        </div>
-    </div>
 </main>

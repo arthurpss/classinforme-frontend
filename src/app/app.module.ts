@@ -31,6 +31,7 @@ import { AdminEmpresaComponent } from './admin-empresa/admin-empresa.component';
 import { LoginAdminComponent } from './login-admin/login-admin.component';
 import { DetalhesProdutoComponent } from './detalhes-produto/detalhes-produto.component';
 import { EditarProdutoComponent } from './editar-produto/editar-produto.component';
+import { EditarDadosComponent } from './editar-dados/editar-dados.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { EditarProdutoComponent } from './editar-produto/editar-produto.componen
     AdminEmpresaComponent,
     LoginAdminComponent,
     DetalhesProdutoComponent,
-    EditarProdutoComponent
+    EditarProdutoComponent,
+    EditarDadosComponent
   ],
   imports: [
     BrowserModule,

@@ -4,7 +4,6 @@ import { CadastroEmpresaComponent } from './cadastro-empresa/cadastro-empresa.co
 import { DashboardEmpresaComponent } from './dashboard-empresa/dashboard-empresa.component';
 import { HomeComponent } from './home/home.component';
 import { LoginEmpresaComponent } from './login-empresa/login-empresa.component';
-import { PrimeiroContatoComponent } from './primeiro-contato/primeiro-contato.component';
 import { CadastroProdutoComponent } from './cadastro-produto/cadastro-produto.component';
 import { CadastroAnuncioComponent } from './cadastro-anuncio/cadastro-anuncio.component';
 import { AdminComponent } from './admin/admin.component';
@@ -15,11 +14,11 @@ import { AdminEmpresaComponent } from './admin-empresa/admin-empresa.component';
 import { LoginAdminComponent } from './login-admin/login-admin.component';
 import { DetalhesProdutoComponent } from './detalhes-produto/detalhes-produto.component';
 import { EditarProdutoComponent } from './editar-produto/editar-produto.component';
+import { EditarDadosComponent } from './editar-dados/editar-dados.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: '', component: HomeComponent },
-  { path: 'primeiro-contato', component: PrimeiroContatoComponent },
   { path: 'cadastro-empresa', component: CadastroEmpresaComponent },
   { path: 'login', component: LoginEmpresaComponent },
   { path: 'dashboard-empresa/:cnpj', component: DashboardEmpresaComponent },
@@ -41,11 +40,10 @@ const routes: Routes = [
       }
     ]
   },
-  {
-    path: 'login-admin', component: LoginAdminComponent
-  },
+  { path: 'login-admin', component: LoginAdminComponent },
   { path: 'produto/:id', component: DetalhesProdutoComponent },
-  { path: 'editar-produto/:id', component: EditarProdutoComponent }
+  { path: 'editar-produto/:id', component: EditarProdutoComponent },
+  { path: 'editar-dados/:cnpj', component: EditarDadosComponent }
 ];
 
 @NgModule({

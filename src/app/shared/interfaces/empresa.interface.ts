@@ -4,8 +4,11 @@ export interface Empresa {
     senha: string,
     razao_social: string,
     cep: string,
-    cidade: string,
-    bairro: string,
     endereco: string,
-    filiado: boolean
+    responsavel: string,
+    email: string,
+    telefone: string,
+    responsavel_secundario: string,
+    email_secundario: string,
+    telefone_secundario: string
 }

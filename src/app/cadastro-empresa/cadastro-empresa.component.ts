@@ -18,10 +18,13 @@ export class CadastroEmpresaComponent implements OnInit {
     senha: "",
     razao_social: "",
     cep: "",
-    cidade: "",
-    bairro: "",
     endereco: "",
-    filiado: false
+    responsavel: "",
+    email: "",
+    telefone: "",
+    responsavel_secundario: "",
+    email_secundario: "",
+    telefone_secundario: ""
   };
 
   observer = {
