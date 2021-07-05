@@ -29,4 +29,8 @@ export class EmpresaService {
   atualizaEmpresa(cnpj: string, empresa: Empresa): Observable<any> {
     return this.http.patch(`${BASE_URL}/empresa/${cnpj}`, empresa, { responseType: "text" });
   }
+
+  atualizaEmpresaAdmin(cnpj: string, empresa: Empresa): Observable<any> {
+    return this.http.patch(`${BASE_URL}/empresa/${cnpj}`, empresa, { responseType: "text" });
+  }
 }

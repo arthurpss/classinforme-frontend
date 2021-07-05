@@ -97,9 +97,9 @@ export class CadastroProdutoComponent implements OnInit {
   cadastraProduto(): void {
     this.produto.produto_id = this.id();
     this.jwtService.getRefreshToken().then(refreshToken => {
-      console.log(refreshToken)
+      // console.log(refreshToken)
       this.jwtService.getToken(refreshToken).subscribe(res => {
-        console.log(res)
+        // console.log(res)
         this.produtoService.novoProduto(this.produto, res.token)
           .subscribe(this.observer);
       });

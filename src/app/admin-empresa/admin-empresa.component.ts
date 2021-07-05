@@ -79,7 +79,7 @@ export class AdminEmpresaComponent implements OnInit {
   }
 
   atualizaEmpresa() {
-    this.empresaService.atualizaEmpresa(this.cnpj, this.empresa).subscribe(() => {
+    this.empresaService.atualizaEmpresaAdmin(this.cnpj, this.empresa).subscribe(() => {
       this.atualizada = true;
     });
   }
