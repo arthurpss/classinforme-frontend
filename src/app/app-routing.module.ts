@@ -15,6 +15,7 @@ import { LoginAdminComponent } from './login-admin/login-admin.component';
 import { DetalhesProdutoComponent } from './detalhes-produto/detalhes-produto.component';
 import { EditarProdutoComponent } from './editar-produto/editar-produto.component';
 import { EditarDadosComponent } from './editar-dados/editar-dados.component';
+import { AdminPlanosComponent } from './admin-planos/admin-planos.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -28,6 +29,9 @@ const routes: Routes = [
     path: 'admin', component: AdminComponent, children: [
       {
         path: 'empresas', component: AdminEmpresasComponent
+      },
+      {
+        path: 'planos', component: AdminPlanosComponent
       },
       {
         path: 'propostas', component: AdminPropostasComponent

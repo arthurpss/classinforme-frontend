@@ -22,4 +22,16 @@ export class EmailService {
       cnpj, email, plano
     }, { responseType: 'text' }).toPromise();
   }
+
+  emailCadastroAdmin(razao_social: string): Promise<any> {
+    return this.http.post(`${BASE_URL}/cadastro-admin/email`, {
+      razao_social
+    }, { responseType: 'text' }).toPromise();
+  }
+
+  emailCadastroEmpresa(razao_social: string, email: string): Promise<any> {
+    return this.http.post(`${BASE_URL}/cadastro-empresa/email`, {
+      razao_social, email
+    }, { responseType: 'text' }).toPromise();
+  }
 }

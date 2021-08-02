@@ -1,0 +1,32 @@
+<main role="main" *ngIf="!isAdmin" style="padding-top: 90px;" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+    <h3>Não autorizado</h3>
+</main>
+
+<main *ngIf="isAdmin" style="padding-top: 90px;" role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+    <h2>Planos</h2>
+    <div class="table-responsive">
+        <table id="tabela" class="table table-striped table-sm">
+            <thead>
+                <tr>
+                    <th>Título</th>
+                    <th>Preço</th>
+                    <th>Ativo</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let plano of planos">
+                    <td>{{plano.titulo}}</td>
+                    <td>{{plano.preco}}</td>
+                    <td *ngIf="plano.ativo">Sim</td>
+                    <td *ngIf="!plano.ativo">Não</td>
+                    <td>
+                        <button (click)="verPlano(plano.id)" type="button" class="btn btn-block btn-outline-success">
+                            Ver plano
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</main>

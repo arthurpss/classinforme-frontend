@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Empresa } from '../shared/interfaces/empresa.interface';
+import { EmailService } from '../shared/services/email.service';
 import { EmpresaService } from '../shared/services/empresa.service';
 
 @Component({
@@ -30,7 +31,12 @@ export class CadastroEmpresaComponent implements OnInit {
   observer = {
     complete: () => {
       this.mostraMensagem(false);
-      this.router.navigateByUrl("login")
+      this.emailService.emailCadastroEmpresa(this.empresa.razao_social, this.empresa.email).then(() => {
+        this.emailService.emailCadastroAdmin(this.empresa.razao_social).then(() => {
+          this.router.navigateByUrl("login")
+        })
+        }
+      );
     },
     error: error => {
       console.log("Erro no cadastro: ", error);
@@ -40,7 +46,7 @@ export class CadastroEmpresaComponent implements OnInit {
 
   mensagem: string;
 
-  constructor(private empresaService: EmpresaService, private router: Router) { }
+  constructor(private empresaService: EmpresaService, private router: Router, private emailService: EmailService) { }
 
   ngOnInit(): void {
   }

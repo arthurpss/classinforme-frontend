@@ -32,6 +32,8 @@ import { LoginAdminComponent } from './login-admin/login-admin.component';
 import { DetalhesProdutoComponent } from './detalhes-produto/detalhes-produto.component';
 import { EditarProdutoComponent } from './editar-produto/editar-produto.component';
 import { EditarDadosComponent } from './editar-dados/editar-dados.component';
+import { AdminPlanosComponent } from './admin-planos/admin-planos.component';
+import { AdminPlanoComponent } from './admin-plano/admin-plano.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +59,9 @@ import { EditarDadosComponent } from './editar-dados/editar-dados.component';
     LoginAdminComponent,
     DetalhesProdutoComponent,
     EditarProdutoComponent,
-    EditarDadosComponent
+    EditarDadosComponent,
+    AdminPlanosComponent,
+    AdminPlanoComponent
   ],
   imports: [
     BrowserModule,
