@@ -27,4 +27,7 @@ export class AdminPlanosComponent implements OnInit {
     this.router.navigateByUrl(`admin/plano/${id}`);
   }
 
+  cadastrarPlano(): void {
+    this.router.navigateByUrl('admin/cadastro-plano');
+  }
 }

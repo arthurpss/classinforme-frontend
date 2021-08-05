@@ -17,16 +17,20 @@
             <tbody>
                 <tr *ngFor="let plano of planos">
                     <td>{{plano.titulo}}</td>
-                    <td>{{plano.preco}}</td>
+                    <td>R$ {{plano.preco}}</td>
                     <td *ngIf="plano.ativo">Sim</td>
                     <td *ngIf="!plano.ativo">Não</td>
                     <td>
-                        <button (click)="verPlano(plano.id)" type="button" class="btn btn-block btn-outline-success">
+                        <button (click)="verPlano(plano.plano_id)" type="button" class="btn btn-block btn-outline-success">
                             Ver plano
                         </button>
                     </td>
                 </tr>
             </tbody>
         </table>
+    </div>
+    <div>
+        <button (click)="cadastrarPlano()" class="btn btn-success my-2" style="margin-right: 15px;">Cadastrar
+            plano</button>
     </div>
 </main>

@@ -16,6 +16,8 @@ import { DetalhesProdutoComponent } from './detalhes-produto/detalhes-produto.co
 import { EditarProdutoComponent } from './editar-produto/editar-produto.component';
 import { EditarDadosComponent } from './editar-dados/editar-dados.component';
 import { AdminPlanosComponent } from './admin-planos/admin-planos.component';
+import { CadastroPlanoComponent } from './cadastro-plano/cadastro-plano.component';
+import { AdminPlanoComponent } from './admin-plano/admin-plano.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -31,9 +33,6 @@ const routes: Routes = [
         path: 'empresas', component: AdminEmpresasComponent
       },
       {
-        path: 'planos', component: AdminPlanosComponent
-      },
-      {
         path: 'propostas', component: AdminPropostasComponent
       },
       {
@@ -41,6 +40,15 @@ const routes: Routes = [
       },
       {
         path: 'empresa/:cnpj', component: AdminEmpresaComponent
+      },
+      {
+        path: 'planos', component: AdminPlanosComponent
+      },
+      {
+        path: 'plano/:id', component: AdminPlanoComponent
+      },
+      {
+        path: 'cadastro-plano', component: CadastroPlanoComponent
       }
     ]
   },

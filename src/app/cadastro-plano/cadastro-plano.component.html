@@ -2,14 +2,13 @@
     <h3>Não autorizado</h3>
 </main>
 <main *ngIf="isAdmin" role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4" style="padding-top: 90px;">
-
     <section class="text-center">
         <div class="container">
-            <h1>Plano</h1>
-            <p class="lead text-muted">O plano pode ser visualizado e alterado</p>
+            <h1>Cadastro</h1>
+            <p class="lead text-muted">Cadastre o plano para disponibilizá-lo na plataforma.</p>
         </div>
     </section>
-    <form #form="ngForm" (submit)="atualizaPlano()">
+    <form #form="ngForm" (submit)="cadastraPlano()">
         <label for="titulo">Título</label>
         <div class="input-group mb-3">
             <input type="text" class="form-control" id="titulo" placeholder="Título" name="titulo"
@@ -24,15 +23,16 @@
                 [(ngModel)]="plano.preco">
         </div>
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="ativo" id="ativo" name="ativo" [(ngModel)]="plano.ativo"> 
+            <input class="form-check-input" type="checkbox" value="ativo" id="ativo" name="ativo"
+                [(ngModel)]="plano.ativo">
             <label class="form-check-label" for="ativo">
                 Ativo
             </label>
         </div>
-        <input [disabled]="form.invalid || atualizado" class="btn-lg btn-outline-success" type="submit"
+        <input [disabled]="form.invalid || planoCadastrado" class="btn-lg btn-outline-success" type="submit"
             value="Atualizar">
-        <div *ngIf="atualizado" class="alert alert-success" role="alert" style="padding-top: 40px;">
-            Dados atualizados
+        <div *ngIf="planoCadastrado" class="alert alert-success" role="alert" style="padding-top: 40px;">
+            Plano cadastrado
         </div>
     </form>
 </main>
