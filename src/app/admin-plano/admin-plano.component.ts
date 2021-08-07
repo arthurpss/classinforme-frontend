@@ -21,8 +21,8 @@ export class AdminPlanoComponent implements OnInit {
   constructor(private jwtService: JwtService, private route: ActivatedRoute, private planoService: PlanoService, private router: Router) { }
 
   ngOnInit(): void {
-    this.isAdmin = this.jwtService.isAdmin();
     this.getPlanoId().subscribe(id => this.planoId = id);
+    this.isAdmin = this.jwtService.isAdmin();
     if (this.isAdmin) {
       this.planoService.listaPlanoPorId(this.planoId).then(plano => {
         this.plano = plano

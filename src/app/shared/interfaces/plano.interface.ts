@@ -3,5 +3,6 @@ export interface Plano {
     preco: number;
     titulo: string;
     descricao: string;
+    tipo: number;
     ativo: boolean;
 }

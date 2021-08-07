@@ -14,12 +14,6 @@ export class PlanoService {
   constructor(private http: HttpClient) { }
 
   cadastraPlano(plano: Plano, token: string): Observable<any> {
-    /* const planoBody = {
-      preco: plano.preco,
-      titulo: plano.titulo,
-      descricao: plano.descricao,
-      ativo: plano.ativo
-    } */
     return this.http.post(`${BASE_URL}/plano`,
       plano, {
         headers: new HttpHeaders().append("Authorization", `${token}`),

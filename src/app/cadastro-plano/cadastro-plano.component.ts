@@ -18,6 +18,7 @@ export class CadastroPlanoComponent implements OnInit {
     titulo: "",
     descricao: "",
     preco: 0,
+    tipo: 0,
     ativo: false
   };
   isAdmin: boolean;

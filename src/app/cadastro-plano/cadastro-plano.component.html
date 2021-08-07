@@ -19,8 +19,18 @@
                 [(ngModel)]="plano.descricao">
         </div>
         <div class="input-group mb-3">
-            <input type="text" class="form-control" id="preco" placeholder="Preço" name="preco"
+            <input type="number" class="form-control" id="preco" placeholder="Preço" name="preco"
                 [(ngModel)]="plano.preco">
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="tipo">Tipo</label>
+            </div>
+            <select class="custom-select" id="tipo" name="tipo" [(ngModel)]="plano.tipo">
+                <option value=1>Básico</option>
+                <option value=2>Regular</option>
+                <option value=3>Completo</option>
+            </select>
         </div>
         <div class="form-check">
             <input class="form-check-input" type="checkbox" value="ativo" id="ativo" name="ativo"
@@ -30,7 +40,7 @@
             </label>
         </div>
         <input [disabled]="form.invalid || planoCadastrado" class="btn-lg btn-outline-success" type="submit"
-            value="Atualizar">
+            value="Cadastrar">
         <div *ngIf="planoCadastrado" class="alert alert-success" role="alert" style="padding-top: 40px;">
             Plano cadastrado
         </div>

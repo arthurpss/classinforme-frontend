@@ -10,6 +10,7 @@
                 <tr>
                     <th>Título</th>
                     <th>Preço</th>
+                    <th>Tipo</th>
                     <th>Ativo</th>
                     <th></th>
                 </tr>
@@ -18,6 +19,10 @@
                 <tr *ngFor="let plano of planos">
                     <td>{{plano.titulo}}</td>
                     <td>R$ {{plano.preco}}</td>
+                    <!-- <td> {{plano.tipo}} </td>  Corrigir martelada-->
+                    <td *ngIf="plano.tipo == 1">Básico</td>
+                    <td *ngIf="plano.tipo == 2">Regular</td>
+                    <td *ngIf="plano.tipo == 3">Completo</td>
                     <td *ngIf="plano.ativo">Sim</td>
                     <td *ngIf="!plano.ativo">Não</td>
                     <td>
