@@ -31,6 +31,6 @@ export class JwtService {
   }
 
   isAdmin(): boolean {
-    return localStorage.getItem('cnpj') === '1';
+    return localStorage.getItem('cnpj') === '0';
   }
 }

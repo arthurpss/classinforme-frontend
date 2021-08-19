@@ -1,0 +1,26 @@
+<ngb-carousel *ngIf="produtosAnunciados" class="carousel" [interval]="2200" pauseOnHover=true pauseOnFocus=true>
+    <ng-template *ngFor="let produto of produtosAnunciados" ngbSlide>
+        <div class="picsum-img-wrapper">
+            <img *ngIf="produto.thumbnail" [src]="produto.thumbnail" alt="{{produto.titulo}}"
+                style="width: 100%; height: 800px;">
+            <img *ngIf="!produto.thumbnail" src="../../assets/images/sem-imagem.jpg" alt="{{produto.titulo}}"
+                style="width: 100%; height: 800px;">
+        </div>
+        <div class="carousel-caption">
+            <h3>{{produto.titulo}}</h3>
+            <p>{{produto.descricao}}</p>
+        </div>
+    </ng-template>
+</ngb-carousel>
+
+<ngb-carousel *ngIf="!produtosAnunciados" class="carousel" [interval]="2200" pauseOnHover=true pauseOnFocus=true>
+    <ng-template ngbSlide>
+        <div class="picsum-img-wrapper">
+            <img src="../../assets/images/marketing.jpg" alt="Anuncie" style="width: 100%; height: 800px;">
+        </div>
+        <div class="carousel-caption">
+            <h3>Anuncie com a gente</h3>
+            <p>Cadastre-se na plataforma pelo botão 'Anuncie'</p>
+        </div>
+    </ng-template>
+</ngb-carousel>

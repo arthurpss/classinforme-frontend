@@ -9,7 +9,6 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CadastroEmpresaComponent } from './cadastro-empresa/cadastro-empresa.component';
 import { CadastroProdutoComponent } from './cadastro-produto/cadastro-produto.component';
-import { CarouselProdutosComponent } from './carousel-produtos/carousel-produtos.component';
 import { RodapeComponent } from './rodape/rodape.component';
 import { PrimeiroContatoComponent } from './primeiro-contato/primeiro-contato.component';
 import { HomeComponent } from './home/home.component';
@@ -35,6 +34,9 @@ import { EditarDadosComponent } from './editar-dados/editar-dados.component';
 import { AdminPlanosComponent } from './admin-planos/admin-planos.component';
 import { AdminPlanoComponent } from './admin-plano/admin-plano.component';
 import { CadastroPlanoComponent } from './cadastro-plano/cadastro-plano.component';
+import { ClassificadosComponent } from './classificados/classificados.component';
+import { CarouselComponent } from './carousel/carousel.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,6 @@ import { CadastroPlanoComponent } from './cadastro-plano/cadastro-plano.componen
     NavbarComponent,
     CadastroEmpresaComponent,
     CadastroProdutoComponent,
-    CarouselProdutosComponent,
     RodapeComponent,
     PrimeiroContatoComponent,
     HomeComponent,
@@ -63,7 +64,9 @@ import { CadastroPlanoComponent } from './cadastro-plano/cadastro-plano.componen
     EditarDadosComponent,
     AdminPlanosComponent,
     AdminPlanoComponent,
-    CadastroPlanoComponent
+    CadastroPlanoComponent,
+    ClassificadosComponent,
+    CarouselComponent
   ],
   imports: [
     BrowserModule,
@@ -71,7 +74,8 @@ import { CadastroPlanoComponent } from './cadastro-plano/cadastro-plano.componen
     FontAwesomeModule,
     HttpClientModule,
     FormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgbModule
   ],
   providers: [
     CatalogoService,

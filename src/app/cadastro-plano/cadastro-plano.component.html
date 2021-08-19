@@ -27,9 +27,10 @@
                 <label class="input-group-text" for="tipo">Tipo</label>
             </div>
             <select class="custom-select" id="tipo" name="tipo" [(ngModel)]="plano.tipo">
-                <option value=1>Básico</option>
-                <option value=2>Regular</option>
-                <option value=3>Completo</option>
+                <option [value]=1>Banner superior</option>
+                <option [value]=2>Catálogo Web</option>
+                <option [value]=3>Classificados</option>
+                <option [value]=4>Pacote completo</option>
             </select>
         </div>
         <div class="form-check">

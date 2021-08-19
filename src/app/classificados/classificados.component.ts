@@ -1,47 +1,37 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Anuncio } from '../shared/interfaces/anuncio.interface';
 import { Imagem } from '../shared/interfaces/imagem.interface';
 import { Produto } from '../shared/interfaces/produto.interface';
 import { AnunciosService } from '../shared/services/anuncios.service';
-import { CatalogoService } from '../shared/services/catalogo.service';
 import { ImagemService } from '../shared/services/imagem.service';
 import { ProdutosService } from '../shared/services/produtos.service';
 
 @Component({
-  selector: 'app-produtos',
-  templateUrl: './produtos.component.html',
-  styleUrls: ['./produtos.component.css']
+  selector: 'app-classificados',
+  templateUrl: './classificados.component.html',
+  styleUrls: ['./classificados.component.css']
 })
-
-export class ProdutosComponent implements OnInit {
-  @Input() filtro: String;
+export class ClassificadosComponent implements OnInit {
 
   anuncios: Anuncio[];
   produtosAnunciados: Produto[] = [];
   imagens: Imagem[] = [];
-  produtosFiltrados: Produto[];
 
-  constructor(private anuncioService: AnunciosService, private produtosService: ProdutosService, private imagemService: ImagemService, private catalogoService: CatalogoService) { }
+  constructor(private anuncioService: AnunciosService, private produtosService: ProdutosService, private imagemService: ImagemService) { }
 
   ngOnInit(): void {
     this.anuncioService.listaAnunciosAtivos().subscribe(anuncios => {
       this.anuncios = anuncios
       this.anuncios.forEach(anuncio => {
-        if (anuncio.plano === "2" || anuncio.plano === "4") {
+        if (anuncio.plano === "3" || anuncio.plano === "4") {
         this.produtosService.listaProdutoPorId(anuncio.produto_id)
           .then(produto => {
-            this.produtosAnunciados.push(produto)
-            this.getImagens();
+              this.produtosAnunciados.push(produto)
+              this.getImagens();
           })
         }
       })
     })
-  }
-
-  ngOnChanges(): void {
-    this.filtro === "0" ?
-      this.produtosFiltrados = this.produtosAnunciados :
-      this.produtosFiltrados = this.produtosAnunciados.filter(produto => produto.categoria === this.filtro)
   }
 
   createImageFromBlob(produto: Produto, image: Blob): void {
@@ -72,4 +62,5 @@ export class ProdutosComponent implements OnInit {
   private getImagemByProdutoId(produto_id: string) {
     return this.imagemService.getImagensByProdutoId(produto_id);
   }
+
 }

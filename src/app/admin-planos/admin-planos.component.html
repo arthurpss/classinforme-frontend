@@ -20,9 +20,10 @@
                     <td>{{plano.titulo}}</td>
                     <td>R$ {{plano.preco}}</td>
                     <!-- <td> {{plano.tipo}} </td>  Corrigir martelada-->
-                    <td *ngIf="plano.tipo == 1">Básico</td>
-                    <td *ngIf="plano.tipo == 2">Regular</td>
-                    <td *ngIf="plano.tipo == 3">Completo</td>
+                    <td *ngIf="plano.tipo == 1">Banner superior</td>
+                    <td *ngIf="plano.tipo == 2">Catálogo Web</td>
+                    <td *ngIf="plano.tipo == 3">Classificados</td>
+                    <td *ngIf="plano.tipo == 4">Pacote completo</td>
                     <td *ngIf="plano.ativo">Sim</td>
                     <td *ngIf="!plano.ativo">Não</td>
                     <td>

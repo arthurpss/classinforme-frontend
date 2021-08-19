@@ -9,7 +9,7 @@
                 <tr>
                     <th>Empresa</th>
                     <th>Produto</th>
-                    <th>Plano do anúncio</th>
+                    <th>Plano</th>
                     <th>Status</th>
                     <th>Ativo</th>
                     <th>Ação</th>
@@ -19,7 +19,10 @@
                 <tr *ngFor="let detalhe of anunciosDetalhes">
                     <td>{{detalhe.empresa.razao_social}}</td>
                     <td>{{detalhe.produto.titulo}}</td>
-                    <td>{{detalhe.anuncio.plano}}</td>
+                    <td *ngIf="detalhe.anuncio.plano == 1">Banner superior</td>
+                    <td *ngIf="detalhe.anuncio.plano == 2">Catálogo Web</td>
+                    <td *ngIf="detalhe.anuncio.plano == 3">Classificados</td>
+                    <td *ngIf="detalhe.anuncio.plano == 4">Pacote completo</td>
                     <td>{{detalhe.anuncio.status}}</td>
                     <td *ngIf="detalhe.anuncio.ativo">Sim</td>
                     <td *ngIf="!detalhe.anuncio.ativo">Não</td>

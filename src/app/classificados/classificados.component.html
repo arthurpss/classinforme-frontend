@@ -1,0 +1,24 @@
+<!-- FEATURETTES -->
+<hr class="featurette-divider">
+<div *ngIf="produtosAnunciados" style="padding-bottom: 25px;">
+    <div *ngFor="let produto of produtosAnunciados" class="row featurette">
+        <div class="col-md-5">
+            <h2 class="featurette-heading">{{produto.titulo}}. <span class="link">{{produto.empresa_cnpj}}</span>
+            </h2>
+            <p class="lead">{{produto.descricao}}</p>
+            <p><a class="btn btn-success" href="produto/{{produto.produto_id}}" role="button">Conheça o produto</a></p>
+        </div>
+        <div class="col-md-7">
+            <img *ngIf="produto.thumbnail" src={{produto.thumbnail}}
+                class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="100%"
+                height="500" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"
+                aria-label="Placeholder: 500x500">
+            <img *ngIf="!produto.thumbnail" src="../../assets/images/sem-imagem.jpg"
+                class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="100%"
+                height="500" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"
+                aria-label="Placeholder: 500x500">
+        </div>
+        <hr class="featurette-divider">
+    </div>
+</div>
+<!-- /FEATURETTES -->

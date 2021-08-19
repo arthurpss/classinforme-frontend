@@ -30,6 +30,10 @@ export class AnunciosService {
     return this.http.get(`${BASE_URL}/anuncios/${cnpj}`);
   }
 
+  listaAnunciosPorTipo(tipo: string): Observable<Anuncio[]> {
+    return this.http.get<Anuncio[]>(`${BASE_URL}/anuncios-tipo/${tipo}`);
+  }
+
   getAnuncios(): Promise<any> {
     return this.http.get(`${BASE_URL}/anuncios`).toPromise();
   }
