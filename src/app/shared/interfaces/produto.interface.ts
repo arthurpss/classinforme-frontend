@@ -4,6 +4,8 @@ export interface Produto {
     titulo: string;
     descricao: string;
     thumbnail: any;
+    preco: number;
+    link: string;
     // caminho_video: string;
     empresa_cnpj: string;
 }
