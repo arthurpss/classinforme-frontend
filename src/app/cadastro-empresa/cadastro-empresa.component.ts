@@ -32,7 +32,7 @@ export class CadastroEmpresaComponent implements OnInit {
     complete: () => {
       this.mostraMensagem(false);
       this.emailService.emailCadastroEmpresa(this.empresa.razao_social, this.empresa.email).then(() => {
-        this.emailService.emailCadastroAdmin(this.empresa.razao_social).then(() => {
+        this.emailService.emailCadastroAdmin(this.empresa.razao_social, this.empresa.telefone).then(() => {
           this.router.navigateByUrl("login")
         })
         }

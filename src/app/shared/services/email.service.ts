@@ -23,9 +23,9 @@ export class EmailService {
     }, { responseType: 'text' }).toPromise();
   }
 
-  emailCadastroAdmin(razao_social: string): Promise<any> {
+  emailCadastroAdmin(razao_social: string, telefone: string): Promise<any> {
     return this.http.post(`${BASE_URL}/cadastro-admin/email`, {
-      razao_social
+      razao_social, telefone
     }, { responseType: 'text' }).toPromise();
   }
 
