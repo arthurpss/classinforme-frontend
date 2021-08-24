@@ -37,6 +37,8 @@ import { CadastroPlanoComponent } from './cadastro-plano/cadastro-plano.componen
 import { ClassificadosComponent } from './classificados/classificados.component';
 import { CarouselComponent } from './carousel/carousel.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgxCurrencyModule } from 'ngx-currency';
+import { NgxMaskModule } from 'ngx-mask';
 
 @NgModule({
   declarations: [
@@ -75,7 +77,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
-    NgbModule
+    NgbModule,
+    NgxCurrencyModule,
+    NgxMaskModule.forRoot()
   ],
   providers: [
     CatalogoService,

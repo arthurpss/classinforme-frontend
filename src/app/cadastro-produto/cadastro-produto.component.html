@@ -18,15 +18,17 @@
         </div>
         <div class="input-group mb-3">
             <input type="text" class="form-control" id="titulo" placeholder="Título do produto" name="titulo"
-                [(ngModel)]="produto.titulo" required>
+                [(ngModel)]="produto.titulo" minlength="1" maxlength="60" required>
         </div>
+        <label for="preco">Preço do produto</label>
         <div class="input-group mb-3">
-            <input type="number" class="form-control" id="preco" placeholder="Preço do produto" name="preco"
-                [(ngModel)]="produto.preco" required>
+            <input class="form-control" id="preco" mask="separator.2" [thousandSeparator]="'.'" [decimalMarker]="','"
+                prefix="R$ " type="text" [dropSpecialCharacters]="true" name="preco" [(ngModel)]="produto.preco"
+                maxlength="15" required>
         </div>
         <div class="input-group mb-3">
             <input type="url" class="form-control" id="link" placeholder="Link para o produto" name="link"
-                [(ngModel)]="produto.link" required>
+                [(ngModel)]="produto.link" required maxlength="60">
         </div>
         <label for="descricao">Descrição do produto</label>
         <div class="input-group mb-3">
@@ -34,7 +36,8 @@
                 required></textarea>
         </div>
         <div class="input-group mb-5">
-            <input [disabled]="form.invalid || produtoCadastrado" class="btn-lg btn-outline-success" type="submit" value="Cadastrar">
+            <input [disabled]="form.invalid || produtoCadastrado" class="btn-lg btn-outline-success" type="submit"
+                value="Cadastrar">
             <span *ngIf="produtoCadastrado" class="alert alert-success" role="alert" style="margin-left: 40px;">
                 {{mensagem}}
             </span>
@@ -51,7 +54,8 @@
                 <input type="file" multiple class="custom-file-input" id="imagem" (change)="onFileSelected($event)">
             </div>
             <div class="input-group mb-5">
-                <input [disabled]="form.invalid || imagemAdicionada || !arquivoSelecionado" class="btn-lg btn-outline-success" type="submit" value="Adicionar">
+                <input [disabled]="form.invalid || imagemAdicionada || !arquivoSelecionado"
+                    class="btn-lg btn-outline-success" type="submit" value="Adicionar">
                 <span *ngIf="imagemAdicionada" class="alert alert-success" role="alert" style="margin-left: 40px;">
                     Imagem adicionada
                 </span>

@@ -6,7 +6,7 @@
     </div>
     <form #form="ngForm" id="formulario" (submit)="loginEmpresa()">
         <div class="form-group">
-            <input type="text" class="form-control" id="cnpj" aria-describedby="CNPJ" name="cnpj" placeholder="CNPJ"
+            <input type="text" class="form-control" id="cnpj" aria-describedby="CNPJ" name="cnpj" placeholder="CNPJ" mask='CPF_CNPJ'
                 [(ngModel)]="login.cnpj">
         </div>
         <div class="form-group">

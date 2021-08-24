@@ -13,49 +13,50 @@
         <label for="cod_sinfor">Código SINFOR</label>
         <div class="input-group mb-3">
             <input type="text" class="form-control" id="cod_sinfor" placeholder="Código sinfor" name="cod_sinfor"
-                [(ngModel)]="empresa.cod_sinfor">
+                [(ngModel)]="empresa.cod_sinfor" maxlength="15">
         </div>
         <div class="input-group mb-3">
-            <input type="text" class="form-control" id="cnpj" placeholder="CNPJ" name="cnpj" [(ngModel)]="empresa.cnpj"
-                disabled>
+            <input type="text" class="form-control" id="cnpj" placeholder="CNPJ" name="cnpj" [(ngModel)]="empresa.cnpj" mask="00.000.000/0000-00"
+                required>
         </div>
         <div class="input-group mb-3">
-            <input type="text" class="form-control" id="razao_social" placeholder="Razão Social" name="razao_social"
-                [(ngModel)]="empresa.razao_social">
+            <input type="text" class="form-control" id="razao_social" placeholder="Razão Social" name="razao_social" maxlength="60"
+                [(ngModel)]="empresa.razao_social" required>
         </div>
         <div class="input-group mb-3">
-            <input type="text" class="form-control" id="cep" placeholder="CEP" name="cep" [(ngModel)]="empresa.cep">
+            <input type="text" class="form-control" id="cep" placeholder="CEP" name="cep" [(ngModel)]="empresa.cep" mask="00000-000"
+                required>
         </div>
         <div class="input-group mb-3">
-            <input type="text" class="form-control" id="endereco" placeholder="Endereço" name="endereco"
-                [(ngModel)]="empresa.endereco">
+            <input type="text" class="form-control" id="endereco" placeholder="Endereço" name="endereco" maxlength="120"
+                [(ngModel)]="empresa.endereco" required>
         </div>
         <div class="input-group mb-3">
-            <input type="text" class="form-control" id="responsavel" placeholder="Responsavel" name="responsavel"
-                [(ngModel)]="empresa.responsavel">
+            <input type="text" class="form-control" id="responsavel" placeholder="Responsavel" name="responsavel" maxlength="80"
+                [(ngModel)]="empresa.responsavel" required>
         </div>
         <div class="input-group mb-3">
-            <input type="text" class="form-control" id="email" placeholder="Email" name="email"
-                [(ngModel)]="empresa.email">
+            <input type="email" class="form-control" id="email" placeholder="Email" name="email"
+                [(ngModel)]="empresa.email" required>
         </div>
         <div class="input-group mb-3">
-            <input type="text" class="form-control" id="telefone" placeholder="Telefone" name="telefone"
-                [(ngModel)]="empresa.telefone">
+            <input type="text" class="form-control" id="telefone" placeholder="Telefone" name="telefone" mask="(00)00000-0000"
+                [(ngModel)]="empresa.telefone" required>
         </div>
-        <small id="secundario-label" class="form-text text-muted">Adicione o contato de mais um responsável, se
-            quiser</small>
+        <small id="secundario-label" class="form-text text-muted">Adicione o contato de mais um responsável, se achar necessário</small>
         <div class="input-group mb-3">
-            <input type="text" class="form-control" id="responsavel_secundario" placeholder="Responsável secundário"
-                name="responsavel_secundario" [(ngModel)]="empresa.responsavel_secundario">
-        </div>
-        <div class="input-group mb-3">
-            <input type="text" class="form-control" id="email_secundario" placeholder="Email secundário"
-                name="email_secundario" [(ngModel)]="empresa.email_secundario">
+            <input type="text" class="form-control" id="responsavel_secundario" placeholder="Responsável secundário" name="responsavel_secundario" maxlength="80"
+                [(ngModel)]="empresa.responsavel_secundario">
         </div>
         <div class="input-group mb-3">
-            <input type="text" class="form-control" id="telefone_secundario" placeholder="Telefone secundário"
-                name="telefone_secundario" [(ngModel)]="empresa.telefone_secundario">
+            <input type="email" class="form-control" id="email_secundario" placeholder="Email secundário" name="email_secundario" 
+                [(ngModel)]="empresa.email_secundario">
         </div>
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" id="telefone_secundario" placeholder="Telefone secundário" name="telefone_secundario" mask="(00)00000-0000"
+                [(ngModel)]="empresa.telefone_secundario">
+        </div>
+        <!-- Button -->
         <input [disabled]="form.invalid || atualizada" class="btn-lg btn-outline-success" type="submit"
             value="Atualizar">
         <div *ngIf="atualizada" class="alert alert-success" role="alert" style="padding-top: 40px;">
