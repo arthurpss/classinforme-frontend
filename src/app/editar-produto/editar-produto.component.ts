@@ -1,7 +1,9 @@
+import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Imagem } from '../shared/interfaces/imagem.interface';
 import { Produto } from '../shared/interfaces/produto.interface';
 import { CatalogoService } from '../shared/services/catalogo.service';
 import { ImagemService } from '../shared/services/imagem.service';
@@ -20,9 +22,15 @@ export class EditarProdutoComponent implements OnInit {
   catalogo: object;
   mensagem: string;
   produtoAtualizado: boolean;
-  files: FileList;
-  imagemAdicionada: boolean = false;
-  arquivoSelecionado: boolean = false;
+
+  selectedFiles?: FileList;
+  progressInfos: any[] = [];
+  message: string[] = [];
+
+  previews: string[] = [];
+  imageInfos?: Observable<any>;
+
+  imagens: Imagem[];
 
   constructor(private route: ActivatedRoute, private produtoService: ProdutosService,
     private catalogoService: CatalogoService, private imagemService: ImagemService, private jwtService: JwtService, private router: Router) { }
@@ -32,6 +40,15 @@ export class EditarProdutoComponent implements OnInit {
       this.produtoService.listaProdutoPorId(id).then(produto => {
         this.produto = produto
         this.isLogado = this.jwtService.isLoggedIn(produto.empresa_cnpj)
+        this.imagemService.getImagensByProdutoId2(this.produto.produto_id).subscribe(imagens => {
+          this.imagens = imagens;
+          this.imagens.forEach(imagem => {
+            this.imagemService.getImagemByKey(imagem.key)
+              .subscribe(data => {
+                this.createImageFromBlob(imagem, data);
+              })
+          });
+        })
       });
     })
     this.catalogoService.getCatalogo()
@@ -57,7 +74,6 @@ export class EditarProdutoComponent implements OnInit {
   observer = {
     complete: () => {
       this.mostraMensagem(false);
-      // this.router.navigateByUrl(`dashboard-empresa/${this.produto.empresa_cnpj}`);
     },
     error: error => {
       console.log("Erro na edição: ", error);
@@ -67,30 +83,78 @@ export class EditarProdutoComponent implements OnInit {
 
   editaProduto(): void {
     this.jwtService.getRefreshToken().then(refreshToken => {
-      console.log(refreshToken)
       this.jwtService.getToken(refreshToken).subscribe(res => {
-        console.log(res)
         this.produtoService.atualizaProduto(this.produto.produto_id, this.produto, res.token)
           .subscribe(this.observer);
       });
     });
   }
 
-  onFileSelected(event): void {
-    if (event.target.files) {
-      this.files = event.target.files;
-      this.arquivoSelecionado = true;
+  selectFiles(event: any): void {
+    this.message = [];
+    this.progressInfos = [];
+    this.selectedFiles = event.target.files;
+
+    this.previews = [];
+    if (this.selectedFiles && this.selectedFiles[0]) {
+      const numberOfFiles = this.selectedFiles.length;
+      for (let i = 0; i < numberOfFiles; i++) {
+        const reader = new FileReader();
+
+        reader.onload = (e: any) => {
+          this.previews.push(e.target.result);
+        };
+
+        reader.readAsDataURL(this.selectedFiles[i]);
+      }
     }
   }
 
-  cadastraImagem(): void {
-    let file: File;
-    for (let i = 0; i < this.files.length; i++) {
-      file = this.files.item(i);
-      this.imagemService.novaImagem(file, this.produto.produto_id);
+  uploadFiles(): void {
+    this.message = [];
+
+    if (this.selectedFiles) {
+      for (let i = 0; i < this.selectedFiles.length; i++) {
+        this.upload(i, this.selectedFiles[i]);
+      }
     }
-    this.imagemAdicionada = true;
-    // this.router.navigateByUrl(`dashboard-empresa/${this.produto.empresa_cnpj}`);
+  }
+
+  upload(idx: number, file: File): void {
+    this.progressInfos[idx] = { value: 0, fileName: file.name };
+
+    if (file) {
+      this.imagemService.novaImagem(file, this.produto.produto_id).subscribe(
+        (event: any) => {
+          if (event.type === HttpEventType.UploadProgress) {
+            this.progressInfos[idx].value = Math.round(100 * event.loaded / event.total);
+          } else if (event instanceof HttpResponse) {
+            const msg = 'Upload realizado: ' + file.name;
+            this.message.push(msg);
+            this.imageInfos = this.imagemService.getImagensByProdutoId2(this.produto.produto_id)
+          }
+        },
+        (err: any) => {
+          this.progressInfos[idx].value = 0;
+          const msg = 'Erro ao fazer upload: ' + file.name;
+          this.message.push(msg);
+        });
+    }
+  }
+
+  deletaImagem(key: string): void {
+    this.imagemService.deletaImagem(this.produto.produto_id, key).subscribe(() => this.ngOnInit());
+  }
+
+  createImageFromBlob(imagem: Imagem, image: Blob): void {
+    let reader = new FileReader();
+    reader.addEventListener("load", () => {
+      imagem.thumb = reader.result;
+    }, false);
+
+    if (image) {
+      reader.readAsDataURL(image);
+    }
   }
 
   concluiEdicao(): void {

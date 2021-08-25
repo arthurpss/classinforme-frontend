@@ -43,8 +43,6 @@ export class CadastroProdutoComponent implements OnInit {
   };
 
   produtoCadastrado: boolean = false;
-  imagemAdicionada: boolean = false;
-  arquivoSelecionado: boolean = false;
 
   mensagem: string;
 
@@ -63,10 +61,10 @@ export class CadastroProdutoComponent implements OnInit {
     name: "",
     size: undefined,
     url: "",
-    produto_id: ""
+    produto_id: "",
+    thumb: undefined
   };
 
-  files: FileList;
   isLogado: boolean;
 
   selectedFiles?: FileList;
@@ -87,9 +85,6 @@ export class CadastroProdutoComponent implements OnInit {
     this.catalogoService.getCatalogo()
       .subscribe(catalogo => this.catalogo = catalogo);
     this.produto.produto_id = this.id();
-    /* Para atualização:
-     console.log(this.produto.produto_id)
-  this.imageInfos = this.imagemService.getImagensByProdutoId2(this.produto.produto_id) */
   }
 
   private getCnpj(): Observable<string> {
@@ -168,22 +163,4 @@ export class CadastroProdutoComponent implements OnInit {
       });
     });
   }
-
-/* 
-  onFileSelected(event): void {
-    if (event.target.files) {
-      this.files = event.target.files;
-      this.arquivoSelecionado = true;
-    }
-  }
-
-  cadastraImagem(): void {
-    let file: File;
-    for (let i = 0; i < this.files.length; i++) {
-      file = this.files.item(i);
-      this.imagemService.novaImagem(file, this.produto.produto_id);
-    }
-    this.imagemAdicionada = true;
-    this.router.navigateByUrl(`dashboard-empresa/${this.produto.empresa_cnpj}`);
-  } */
 }

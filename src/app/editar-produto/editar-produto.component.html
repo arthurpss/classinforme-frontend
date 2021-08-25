@@ -6,7 +6,46 @@
     <div class="py-5 text-center">
         <h2>Edição de produto</h2>
         <p class="lead">Atualize a forma como seu produto será apresentado em nossa plataforma.</p>
-        <p class="lead"><b>Adicione imagens ao seu produto após cadastrar as informações principais</b></p>
+    </div>
+    <div *ngIf="imagens" class="row" style="padding-bottom: 25px;">
+        <div *ngFor="let imagem of imagens" class="col-md-4">
+            <img src={{imagem.thumb}} class="preview">
+            <p>{{imagem.name}}</p>
+            <button class="btn btn-danger" (click)="deletaImagem(imagem.key)">Deletar</button>
+        </div>
+    </div>
+
+    <div *ngFor="let progressInfo of progressInfos" class="mb-2">
+        <span>{{ progressInfo.fileName }}</span>
+        <div class="progress">
+            <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"
+                attr.aria-valuenow="{{ progressInfo.value }}" aria-valuemin="0" aria-valuemax="100"
+                [ngStyle]="{ width: progressInfo.value + '%' }">
+                {{ progressInfo.value }}%
+            </div>
+        </div>
+    </div>
+    <label for="imagem">Adicionar imagens</label>
+    <div class="row">
+        <div class="col-8">
+            <label class="btn btn-default p-0">
+                <input type="file" accept="image/*" multiple (change)="selectFiles($event)" />
+            </label>
+        </div>
+
+        <div class="col-4">
+            <button class="btn btn-success" [disabled]="!selectedFiles" (click)="uploadFiles()">
+                Upload
+            </button>
+        </div>
+    </div>
+    <div>
+        <img *ngFor='let preview of previews' [src]="preview" class="preview">
+    </div>
+    <div *ngIf="message.length" class="alert alert-secondary my-3" role="alert">
+        <ul *ngFor="let msg of message; let i = index">
+            <li>{{ msg }}</li>
+        </ul>
     </div>
     <form #form="ngForm" (submit)="editaProduto()">
         <label for="tipo-produto">Categoria do produto</label>
@@ -17,8 +56,8 @@
             </select>
         </div>
         <div class="input-group mb-3">
-            <input type="text" class="form-control" id="titulo" placeholder="Título do produto" name="titulo" maxlength="60"
-                [(ngModel)]="produto.titulo" required>
+            <input type="text" class="form-control" id="titulo" placeholder="Título do produto" name="titulo"
+                maxlength="60" [(ngModel)]="produto.titulo" required>
         </div>
         <label for="descricao">Descrição do produto</label>
         <div class="input-group mb-3">
@@ -33,22 +72,5 @@
             </span>
         </div>
     </form>
-    <div class="py-5 text-center">
-        <h2>Adicione uma imagem ao seu produto</h2>
-        <p class="lead">A imagem será apresentada na tela de divulgação</p>
-    </div>
-    <form #form="ngForm" (submit)="cadastraImagem()" enctype="multipart/form-data">
-        <div class="input-group mb-3 custom-file">
-            <label class="custom-file-label" for="imagem">Imagem</label>
-            <input type="file" multiple class="custom-file-input" id="imagem" (change)="onFileSelected($event)">
-        </div>
-        <div class="input-group mb-5">
-            <input [disabled]="form.invalid || imagemAdicionada || !arquivoSelecionado"
-                class="btn-lg btn-outline-success" type="submit" value="Adicionar">
-            <span *ngIf="imagemAdicionada" class="alert alert-success" role="alert" style="margin-left: 40px;">
-                Imagem adicionada
-            </span>
-        </div>
-    </form>
-    <button class="btn btn-success" (click)="concluiEdicao()" style="margin-bottom: 30px;">Concluir</button>
+    <button class="btn-lg btn-success" (click)="concluiEdicao()" style="margin-bottom: 30px;">Concluir</button>
 </div>

@@ -41,4 +41,8 @@ export class ImagemService {
   getImagemByKey(key: string): Observable<any> {
     return this.http.get(`${BASE_URL}/imagem/${key}`, { responseType: 'blob' });
   }
+  
+  deletaImagem(produto_id: string, key: string): Observable<any> {
+    return this.http.post(`${BASE_URL}/deleta-imagem/${produto_id}`, {key: key}, {responseType: 'text'})
+  }
 }
