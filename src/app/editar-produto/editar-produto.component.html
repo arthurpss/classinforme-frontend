@@ -59,6 +59,16 @@
             <input type="text" class="form-control" id="titulo" placeholder="Título do produto" name="titulo"
                 maxlength="60" [(ngModel)]="produto.titulo" required>
         </div>
+        <label for="preco">Preço do produto</label>
+        <div class="input-group mb-3">
+            <input class="form-control" id="preco" mask="separator.2" [thousandSeparator]="'.'" [decimalMarker]="','"
+                prefix="R$ " type="text" [dropSpecialCharacters]="true" name="preco" [(ngModel)]="produto.preco"
+                maxlength="15" required>
+        </div>
+        <div class="input-group mb-3">
+            <input type="url" class="form-control" id="link" placeholder="Link para o produto" name="link"
+                [(ngModel)]="produto.link" required maxlength="60">
+        </div>
         <label for="descricao">Descrição do produto</label>
         <div class="input-group mb-3">
             <textarea class="form-control" id="descricao" name="descricao" rows="5" [(ngModel)]="produto.descricao"
