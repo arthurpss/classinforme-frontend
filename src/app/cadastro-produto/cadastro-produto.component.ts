@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { JwtService } from '../shared/services/jwt.service';
+import { HttpEventType, HttpResponse } from '@angular/common/http';
 
 
 @Component({
@@ -22,7 +23,7 @@ export class CadastroProdutoComponent implements OnInit {
   observer = {
     complete: () => {
       this.mostraMensagem(false);
-      // this.router.navigateByUrl(`dashboard-empresa/${this.produto.empresa_cnpj}`);
+      this.router.navigateByUrl(`dashboard-empresa/${this.produto.empresa_cnpj}`);
     },
     error: error => {
       console.log("Erro no cadastro: ", error);
@@ -68,6 +69,13 @@ export class CadastroProdutoComponent implements OnInit {
   files: FileList;
   isLogado: boolean;
 
+  selectedFiles?: FileList;
+  progressInfos: any[] = [];
+  message: string[] = [];
+
+  previews: string[] = [];
+  imageInfos?: Observable<any>;
+
   constructor(private route: ActivatedRoute, private produtoService: ProdutosService,
     private catalogoService: CatalogoService, private imagemService: ImagemService, private jwtService: JwtService, private router: Router) { }
 
@@ -78,12 +86,68 @@ export class CadastroProdutoComponent implements OnInit {
     });
     this.catalogoService.getCatalogo()
       .subscribe(catalogo => this.catalogo = catalogo);
+    this.produto.produto_id = this.id();
+    /* Para atualização:
+     console.log(this.produto.produto_id)
+  this.imageInfos = this.imagemService.getImagensByProdutoId2(this.produto.produto_id) */
   }
 
   private getCnpj(): Observable<string> {
     return this.route.paramMap.pipe(
       map(params => params.get('cnpj'))
     );
+  }
+
+  selectFiles(event: any): void {
+    this.message = [];
+    this.progressInfos = [];
+    this.selectedFiles = event.target.files;
+
+    this.previews = [];
+    if (this.selectedFiles && this.selectedFiles[0]) {
+      const numberOfFiles = this.selectedFiles.length;
+      for (let i = 0; i < numberOfFiles; i++) {
+        const reader = new FileReader();
+
+        reader.onload = (e: any) => {
+          this.previews.push(e.target.result);
+        };
+
+        reader.readAsDataURL(this.selectedFiles[i]);
+      }
+    }
+  }
+
+  uploadFiles(): void {
+    this.message = [];
+
+    if (this.selectedFiles) {
+      for (let i = 0; i < this.selectedFiles.length; i++) {
+        this.upload(i, this.selectedFiles[i]);
+      }
+    }
+  }
+
+  upload(idx: number, file: File): void {
+    this.progressInfos[idx] = { value: 0, fileName: file.name };
+
+    if (file) {
+      this.imagemService.novaImagem(file, this.produto.produto_id).subscribe(
+        (event: any) => {
+          if (event.type === HttpEventType.UploadProgress) {
+            this.progressInfos[idx].value = Math.round(100 * event.loaded / event.total);
+          } else if (event instanceof HttpResponse) {
+            const msg = 'Upload realizado: ' + file.name;
+            this.message.push(msg);
+            this.imageInfos = this.imagemService.getImagensByProdutoId2(this.produto.produto_id)
+          }
+        },
+        (err: any) => {
+          this.progressInfos[idx].value = 0;
+          const msg = 'Erro ao fazer upload: ' + file.name;
+          this.message.push(msg);
+        });
+    }
   }
 
   private mostraMensagem(erro: boolean): void {
@@ -97,7 +161,6 @@ export class CadastroProdutoComponent implements OnInit {
   }
 
   cadastraProduto(): void {
-    this.produto.produto_id = this.id();
     this.jwtService.getRefreshToken().then(refreshToken => {
       this.jwtService.getToken(refreshToken).subscribe(res => {
         this.produtoService.novoProduto(this.produto, res.token)
@@ -106,7 +169,7 @@ export class CadastroProdutoComponent implements OnInit {
     });
   }
 
-
+/* 
   onFileSelected(event): void {
     if (event.target.files) {
       this.files = event.target.files;
@@ -122,5 +185,5 @@ export class CadastroProdutoComponent implements OnInit {
     }
     this.imagemAdicionada = true;
     this.router.navigateByUrl(`dashboard-empresa/${this.produto.empresa_cnpj}`);
-  }
+  } */
 }
