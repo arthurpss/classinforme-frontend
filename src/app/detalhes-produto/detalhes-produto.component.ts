@@ -26,8 +26,17 @@ export class DetalhesProdutoComponent implements OnInit {
     this.getId().subscribe(id => this.produtosService.listaProdutoPorId(id)
       .then(produto => {
         this.produto = produto;
-        this.getImagens(produto);
+        // this.getImagens(produto);
         this.empresaService.getEmpresaPorCnpj(produto.empresa_cnpj).then(empresa => this.empresa = empresa);
+        this.imagemService.getImagensByProdutoId2(this.produto.produto_id).subscribe(imagens => {
+          this.imagens = imagens;
+          this.imagens.forEach(imagem => {
+            this.imagemService.getImagemByKey(imagem.key)
+              .subscribe(data => {
+                this.createImageFromBlob(imagem, data);
+              })
+          });
+        })
       }));
   }
 
@@ -53,10 +62,10 @@ export class DetalhesProdutoComponent implements OnInit {
     return this.imagemService.getImagensByProdutoId(id);
   }
 
-  createImageFromBlob(produto: Produto, image: Blob): void {
+  createImageFromBlob(imagem: Imagem, image: Blob): void {
     let reader = new FileReader();
     reader.addEventListener("load", () => {
-      produto.thumbnail = reader.result;
+      imagem.thumb = reader.result;
     }, false);
 
     if (image) {
